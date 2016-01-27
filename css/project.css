@@ -1,10 +1,10 @@
 body {
-	background: url("../img/background.png") no-repeat center center fixed;
+	background: url("../img/background.png") center center fixed;
 	padding: 25px;
 }
 
 #profile-picture {
-	width: 50px;
+	width: 75px;
 	height: auto;
 }
 
