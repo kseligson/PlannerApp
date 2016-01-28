@@ -1,0 +1,42 @@
+body {
+	background: url("../img/background.png") center center fixed;
+	padding: 25px;
+}
+
+#profile-picture {
+	width: 75px;
+	height: auto;
+}
+
+.greeting {
+	color: white;
+	padding-bottom: 20px;
+}
+
+#date-display {
+	padding-top: 20px;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+}
+
+#month {
+	font-size: 50px;
+}
+
+#date {
+	font-size: 200px;
+}
+
+#bottom-nav {
+	text-align: center;
+}
+
+#bottom-nav figure {
+	color: white;
+}
+
+#bottom-nav img {
+	width: 50px;
+	height: auto;
+}
