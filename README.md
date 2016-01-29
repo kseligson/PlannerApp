@@ -1,4 +1,4 @@
-lab3
+lab4
 ====
 
-Lab 3 for Intro HCI: client-side interactivity
+Lab 4: Programming with Javascript
