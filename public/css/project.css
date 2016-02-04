@@ -11,6 +11,7 @@ body {
 .greeting {
 	color: white;
 	padding-bottom: 20px;
+	font-size: 20px;
 }
 
 #date-display {
@@ -37,6 +38,41 @@ body {
 }
 
 #bottom-nav img {
-	width: 50px;
+	width: 65%;
 	height: auto;
 }
+
+#cal-header {
+	text-align: center;
+	color: white;
+	position: fixed;
+}
+
+#menu-photo {
+	width: 20px;
+	height: auto;
+	margin-top: 25px;
+}
+
+#cal-label {
+	font-size: 50px;
+	text-align: center;
+}
+
+#add-label {
+	vertical-align: middle;
+	font-size: 50px;
+}
+
+a {
+	color: white;
+}
+
+a:hover {
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+}
+
+#cal-label a:hover {
+	font-weight: normal;

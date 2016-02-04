@@ -46,8 +46,32 @@ exports.view = function(req, res){
       month = "December";
       break;
   }
+
   res.render('index', {
     'month': month,
-    'date': date
+    'date': date,
+    'time': today.getHours() + ':' + today.getMinutes() + '////' + today.toString(),
+    'button': [
+      {
+        'image': 'cal-icon.png',
+        'caption': "Calendar",
+        'link': 'calendar'
+      },
+      {
+        'image': 'event-icon.png',
+        'caption': "Today's Events",
+        'link': 'events'
+      },
+      {
+        'image': 'task-icon.png',
+        'caption': "Today's Tasks",
+        'link': 'tasks'
+      },
+      {
+        'image': 'settings-icon.png',
+        'caption': "Settings",
+        'link': 'settings'
+      }
+    ]
   });
 };

@@ -20,30 +20,12 @@
 
 <body>
 	<div class="container">
-		<div class="greeting" style="text-align: center">Hello!</div>
-		<div class="profile">
-			<figure align="center">
-				<img class="img-circle" id="profile-picture" src="img/default.png"/>
-			</figure>
-		</div>
-
-		<div id="date-display">
-			<span id="month">{{month}}</span><br><span id="date">{{date}}</span>
-		</div>
-
-		<div id="bottom-nav" style="text-align: center">
-			<div class="row">
-				{{#each button}}	
-				<div class="col-xs-3">
-					<a href="/{{link}}">
-						<figure>
-							<img class="img-circle" src="img/{{image}}"/>
-							<figcaption>{{caption}}</figcaption>
-						</figure>
-					</a>
-				</div>
-				{{/each}}
+		<div id="cal-header" class="row">
+			<div class="col-xs-2">
+				<img class="img-circle" align="center" id="menu-photo" src="img/default.png"/>
 			</div>
+			<div class="col-xs-8" id="cal-label"><a href="/">Tasks</a></div>
+			<div class="col-xs-2" id="add-label"><a href="newtask">+</a></div>
 		</div>
 	</div>
 
