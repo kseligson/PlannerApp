@@ -6,9 +6,9 @@ exports.view = function(req, res) {
 	});
 
 	res.render( 'settings', {
-	'button': [
+	'option': [
     	  {
-		    'caption': "Account Settings",
+		    'caption': "Swaag Settings",
 		    'link': 'accountSettings'
 		  },
 		  {

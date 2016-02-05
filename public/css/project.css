@@ -78,19 +78,11 @@ a:hover {
 	font-weight: normal;
 }
 
-#settings-nav {
-	text-align: left;
-}
-
-#settings-nav menu{
-
-}
-
-#settings-nav option{
+.option{
 	border-bottom: thin solid #000000;
 	color: #000000;
     display: block;
-    line-height: 30px;
+    line-height: 40px;
     list-style-type: none;
     margin: 20px 0;
     text-decoration: none; 
