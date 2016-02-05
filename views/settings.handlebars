@@ -23,30 +23,17 @@
 		<a style="color: white" href="\">HOME</a>
 	</div>
 
-	<div id="settings-nav">
-		<div class="menu">
-
-				<ul class="list-group">
-					{{#each options}}
-					<li class="option">
-						<a href="/{{link}}">
-							<caption>{{caption}}</caption>
-						</a>
-					</li>
+	
+				<ul>
+					{{#each list-item}}
+					<li>
+							<a href="/{{link}}">
+							{{caption}}
+							</a>
+						</li>
 					{{/each}}
 				</ul>
-
-<!--
-					{{#each button}}	
-				<div class="option">
-					<a href="/{{link}}">
-						<caption>{{caption}}</caption>
-					</a>
-				</div>
-				{{/each}} -->
-			</div>
-
-	</div> 
+ 
 
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
