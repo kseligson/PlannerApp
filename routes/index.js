@@ -52,34 +52,5 @@ exports.view = function(req, res){
     "date": date
   }
 
-  data["date"].push(curDate);
-
   res.render('index', data);
-  /*, {
-    'month': month,
-    'date': date,
-    'time': today.getHours() + ':' + today.getMinutes() + '////' + today.toString(),
-    'button': [
-      {
-        'image': 'cal-icon.png',
-        'caption': "Calendar",
-        'link': 'calendar'
-      },
-      {
-        'image': 'event-icon.png',
-        'caption': "Today's Events",
-        'link': 'events'
-      },
-      {
-        'image': 'task-icon.png',
-        'caption': "Today's Tasks",
-        'link': 'tasks'
-      },
-      {
-        'image': 'settings-icon.png',
-        'caption': "Settings",
-        'link': 'settings'
-      }
-    ]
-  });*/
 };

@@ -4,6 +4,7 @@ body {
 	font-family: 'Alegreya Sans', sans-serif;
 }
 
+/* HOME PAGE */
 #profile-picture {
 	width: 75px;
 	height: auto;
@@ -61,6 +62,10 @@ body {
 	padding-top: 5px;
 }
 
+/* CALENDAR */
+.calendar {
+	padding-top: 40px;
+}
 #cal-header {
 	text-align: center;
 	color: white;
@@ -78,11 +83,6 @@ body {
 	text-align: center;
 }
 
-#add-label {
-	vertical-align: middle;
-	font-size: 50px;
-}
-
 a {
 	color: white;
 }
@@ -97,6 +97,7 @@ a:hover {
 	font-weight: normal;
 }
 
+/* SETTINGS */
 .list-option{
 	border-bottom: thin solid #000000;
 	color: #000000;
@@ -106,31 +107,58 @@ a:hover {
     text-decoration: none; 
 }
 
-
-
-ul {
+.settings ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
  
-li {
+.settings li {
   font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
   border-bottom: 1px solid #ccc;
 }
  
-li:last-child {
+.settings li:last-child {
   border: none;
 }
  
-li a {
+.settings li a {
   text-decoration: none;
   color: #FFFFFF;
   display: block;
   width: 200px;
- 
 }
- 
-li a:hover {
-  font-size: 30px;
+
+.settings {
+	padding-top: 40px;
+}
+
+/* TASKS */
+
+.page-header {
+	color: white;
+	font-size: 50px;
+}
+
+.page-title {
+	text-align: left;
+}
+
+.add-label {
+	text-align: right;
+}
+
+/* Navigation */
+.navbar-nav > li > a, .navbar-brand
+{
+    padding-top:4px !important;
+    padding-bottom:0 !important;
+    height: 36px;
+    color: rgb(26,134,204) !important;
+}
+
+.navbar
+{
+    min-height:36px !important;
+    background-color: #000;
 }
