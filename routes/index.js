@@ -1,4 +1,4 @@
-
+var data = require('../data.json');
 /*
  * GET home page.
  */
@@ -47,7 +47,15 @@ exports.view = function(req, res){
       break;
   }
 
-  res.render('index', {
+  var curDate = {
+    "month": month,
+    "date": date
+  }
+
+  data["date"].push(curDate);
+
+  res.render('index', data);
+  /*, {
     'month': month,
     'date': date,
     'time': today.getHours() + ':' + today.getMinutes() + '////' + today.toString(),
@@ -73,5 +81,5 @@ exports.view = function(req, res){
         'link': 'settings'
       }
     ]
-  });
+  });*/
 };

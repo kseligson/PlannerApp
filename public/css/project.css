@@ -1,6 +1,7 @@
 body {
 	background: url("../img/background.png") center center fixed;
 	padding: 25px;
+	font-family: 'Alegreya Sans', sans-serif;
 }
 
 #profile-picture {
@@ -12,6 +13,20 @@ body {
 	color: white;
 	padding-bottom: 20px;
 	font-size: 20px;
+	text-align: center;
+	font-size: 50px;
+}
+
+.day-summary {
+	color: white;
+	padding-top: 40px;
+	padding-bottom: 10px;
+	text-align: center;
+	font-size: 25px;
+}
+
+.page-link {
+	padding-top: 30px;
 }
 
 #date-display {
@@ -38,8 +53,12 @@ body {
 }
 
 #bottom-nav img {
-	width: 55px;
+	width: 75px;
 	height: auto;
+}
+
+#bottom-nav figcaption {
+	padding-top: 5px;
 }
 
 #cal-header {

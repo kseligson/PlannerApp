@@ -8,8 +8,7 @@
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/css/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="/css/project.css" rel="stylesheet">
-	<!-- this is a comment in HTML -->
-
+	<link href='https://fonts.googleapis.com/css?family=Alegreya+Sans' rel='stylesheet' type='text/css'>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -20,25 +19,23 @@
 
 <body>
 	<div class="container">
-		<div class="greeting" style="text-align: center">Hello!</div>
+		<div class="greeting">Hello, user!</div>
 		<div class="profile">
 			<figure align="center">
 				<img class="img-circle" id="profile-picture" src="img/default.png"/>
 			</figure>
 		</div>
 
-		<div id="date-display">
-			<span id="month">{{month}}</span><br><span id="date">{{date}}</span>
-		</div>
+		<div class="day-summary">Today is ______.<br>You have ____ events and _____ unfinished tasks today.</div>
 
 		<div id="bottom-nav" style="text-align: center">
 			<div class="row">
-				{{#each button}}	
-				<div class="col-xs-3">
+				{{#each nav-link}}	
+				<div class="col-xs-6">
 					<a href="/{{link}}">
-						<figure align="center">
+						<figure class="page-link">
 							<img class="img-circle" src="img/{{image}}"/>
-							<figcaption>{{caption}}</figcaption>
+							<figcaption>{{text}}</figcaption>
 						</figure>
 					</a>
 				</div>
