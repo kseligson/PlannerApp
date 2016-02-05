@@ -1,4 +1,4 @@
-lab4
+People's Planner
 ====
 
-Lab 4: Programming with Javascript
+Planner Application designed for COGS 120/CSE 170 course.
