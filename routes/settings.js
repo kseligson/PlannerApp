@@ -12,12 +12,12 @@ exports.view = function(req, res) {
 		    'link': 'accountSettings'
 		  },
 		  {
-		    'caption': "Noticications",
+		    'caption': "Notifications",
 		    'link': 'notifications'
 		  },
 		  {
-		  	'caption: "Help',
-		  	'link': 'www.google.com'
+		  	'caption': "Help",
+		  	'link': 'Calender'
 		  }
 		]
 	});

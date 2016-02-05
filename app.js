@@ -51,7 +51,7 @@ app.get('/settings', settings.view);
 app.get('/newtask', newtask.view);
 app.get('/newevent', newevent.view);
 app.get('/notifications', notifications.view);
-app.get('accountSettings', accountSettings.view);
+app.get('/accountSettings', accountSettings.view);
 // Example route
 // app.get('/users', user.list);
 
