@@ -15,6 +15,8 @@ var tasks = require('./routes/tasks');
 var settings = require('./routes/settings');
 var newtask = require('./routes/newtask');
 var newevent = require('./routes/newevent');
+var notifications = require('./routes/notifications');
+var accountSettings = require('./routes/accountSettings');
 // Example route
 // var user = require('./routes/user');
 
@@ -48,6 +50,8 @@ app.get('/tasks', tasks.view);
 app.get('/settings', settings.view);
 app.get('/newtask', newtask.view);
 app.get('/newevent', newevent.view);
+app.get('/notifications', notifications.view);
+app.get('accountSettings', accountSettings.view);
 // Example route
 // app.get('/users', user.list);
 

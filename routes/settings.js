@@ -4,4 +4,21 @@ exports.view = function(req, res) {
 	res.render('settings', {
 		'projectName': name
 	});
+
+	res.render( 'settings', {
+	'button': [
+    	  {
+		    'caption': "Account Settings",
+		    'link': 'accountSettings'
+		  },
+		  {
+		    'caption': "Noticications",
+		    'link': 'notifications'
+		  },
+		  {
+		  	'caption: "Help',
+		  	'link': 'www.google.com'
+		  }
+		]
+	});
 };

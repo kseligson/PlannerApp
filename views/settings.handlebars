@@ -23,6 +23,19 @@
 		<a style="color: white" href="\">HOME</a>
 	</div>
 
+	<div id="settings-nav">
+		<div>
+				{{#each button}}	
+				<div class="option">
+					<a href="/{{link}}">
+						<caption>{{caption}}</caption>
+					</a>
+				</div>
+				{{/each}}
+			</div>
+
+	</div>
+
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 </body>
