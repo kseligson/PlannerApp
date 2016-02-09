@@ -36,7 +36,7 @@
                         <ul class="nav navbar-nav navbar-right" style="margin-top: 12px; text-align: right">
                         	<li><a href="/">Home</a></li>
                             {{#each nav-link}}
-                                <li><a href="{{link}}">{{text}}</a></li>
+                                <li><a href="/{{link}}">{{text}}</a></li>
                             {{/each}}
                         </ul>
                     </div>
@@ -45,7 +45,7 @@
         </div>
     </div>
     
-	<div class="container">
+	<div class="container home-body">
 		<div class="greeting">Hello, user!</div>
 		<div class="profile">
 			<figure align="center">
@@ -60,7 +60,7 @@
 				{{#each nav-link}}	
 				<div class="col-xs-6">
 					<figure class="page-link">
-						<a href="\{{link}}">
+						<a href="/{{link}}">
 							<img class="img-circle" src="img/{{image}}"/>
 						</a>
 						<figcaption>{{text}}</figcaption>
