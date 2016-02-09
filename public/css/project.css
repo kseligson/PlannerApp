@@ -98,24 +98,26 @@ a:hover {
 }
 
 /* SETTINGS */
-.list-option{
-	border-bottom: thin solid #000000;
-	color: #000000;
-    display: block;
-    line-height: 50px;
-    list-style-type: none;
-    text-decoration: none; 
+
+.settings-profile {
+	margin-top: 40px;
+	margin-bottom: 0px;
 }
 
 .settings ul {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
  
 .settings li {
+  display: inline-block;
   font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
-  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding-top: 5px;
 }
  
 .settings li:last-child {
@@ -162,3 +164,4 @@ a:hover {
     min-height:36px !important;
     background-color: #000;
 }
+
