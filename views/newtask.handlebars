@@ -19,14 +19,97 @@
 </head>
 
 <body>
+	<div class="navbar-wrapper">
+        <div class="container">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" style="text-align: center"href="/">People's<br>Planner
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right" style="margin-top: 12px; text-align: right">
+                        	<li><a href="/">Home</a></li>
+                            {{#each nav-link}}
+                                <li><a href="{{link}}">{{text}}</a></li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
 	<div class="container">
-		<div id="cal-header" class="row">
-			<div class="col-xs-2">
-				<img class="img-circle" align="center" id="menu-photo" src="img/default.png"/>
-			</div>
-			<div class="col-xs-8" id="cal-label"><a href="/">New Task</a></div>
-			<div class="col-xs-2" id="add-label"><a href="/tasks">Save</a></div>
+		<div class="page-header">
+			<div class="page-title">New Task</div>
 		</div>
+
+		<form role="form" id="new_task">
+            <div class="form-group">
+                <label for="taskName">Name</label>
+                <input type="text" class="form-control" id="taskName">
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-6">
+                    <label for="startDate">Due Date</label>
+                    <input type="date" class="form-control" id="startDate">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label for="startTime">Time</label>
+                    <input type="time" class="form-control" id="startTime">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-3">
+                    <label for="taskColor">Color</label>
+                    <input type="color" class="form-control" id="taskColor">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="taskNotes">Notes</label>
+                <textarea class="form-control" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">Repeat Task
+                    </label>
+                </div>
+            </div>
+            <div class="form-group col-xs-offset-2" id="customOptions">
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="repeatOptions" id="repeatDaily" value="daily">Daily
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="repeatOptions" id="repeatWeekly" value="weekly">Weekly
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="repeatOptions" id="repeatCustom" value="custom">Custom
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">Remind me
+                    </label>
+                </div>
+            </div>
+    		<input class="btn btn-primary" align="center" type="submit" value="Save">
+    		<a href="/tasks" class="btn btn-default pull-right" type="button" value="Cancel">Cancel</a>
+    	</form>
 	</div>
 
 	<script src="https://code.jquery.com/jquery.js"></script>
