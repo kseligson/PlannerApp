@@ -114,8 +114,7 @@ a:hover {
 }
  
 .settings li {
-  display: inline-block;
-  color:#FFFFFF;
+  color: #FFFFFF;
   font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
   margin-bottom: 10px;
   padding-top: 5px;
@@ -128,6 +127,7 @@ a:hover {
 .settings li a {
   text-decoration: none;
   color: #FFFFFF;
+  text-align: center;
   display: block;
   width: 200px;
 }
@@ -136,12 +136,23 @@ a:hover {
 	padding-top: 40px;
 }
 
+.liref {
+  display: inline-block;
+}
+
+#emailnotif {
+	display: : inline-block;
+	text-decoration: none;
+	text-align: center;
+}
+
 #notif-toggle {
 	background-color: Transparent;
-            background-repeat:no-repeat;
-            border: none;
-            cursor:pointer;
-            overflow: hidden;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    color: #FFFFFF;
 }
 /* TASKS */
 
@@ -156,6 +167,11 @@ a:hover {
 
 .add-label {
 	text-align: right;
+}
+
+.checkbox {
+	color: #FFF;
+
 }
 
 /* Navigation */
@@ -183,4 +199,13 @@ a:hover {
 
 .btn {
 	width: 75px;
+}
+
+/* ACC SETTINGS */
+.container-acc {
+	margin-top: 40px;
+}
+
+.acclabel{
+	color: #FFFFFF;
 }
