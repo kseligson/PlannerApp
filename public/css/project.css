@@ -1,5 +1,5 @@
 body {
-	background: url("../img/background.png") center center fixed;
+	background: url("../img/background.png") center center fixed repeat;
 	padding: 25px;
 	font-family: 'Alegreya Sans', sans-serif;
 }
@@ -97,6 +97,7 @@ a:hover {
 	font-weight: normal;
 }
 
+
 /* SETTINGS */
 
 .settings-profile {
@@ -172,3 +173,14 @@ a:hover {
     background-color: #000;
 }
 
+.home-body {
+	padding-top: 40px;
+}
+
+#new_task {
+	color: white;
+}
+
+.btn {
+	width: 75px;
+}
