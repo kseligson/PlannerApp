@@ -27,10 +27,6 @@
 		    "link": "accountSettings"
 		},
 		{
-		    "caption": "Notifications",
-		    "link": "notifications"
-		},
-		{
 		  	"caption": "Help",
 		  	"link": "calendar"
 		}
