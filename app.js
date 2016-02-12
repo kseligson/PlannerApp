@@ -19,6 +19,7 @@ var notifications = require('./routes/notifications');
 var accountSettings = require('./routes/accountSettings');
 var eventsummary = require('./routes/eventsummary');
 var tasksummary = require('./routes/tasksummary');
+var login = require('./routes/login');
 // Example route
 // var user = require('./routes/user');
 
@@ -56,6 +57,7 @@ app.get('/notifications', notifications.view);
 app.get('/accountSettings', accountSettings.view);
 app.get('/eventsummary', eventsummary.view);
 app.get('/tasksummary', tasksummary.view);
+app.get('/login', login.view);
 // Example route
 // app.get('/users', user.list);
 
