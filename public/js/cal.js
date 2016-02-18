@@ -7,10 +7,12 @@ $(document).ready(function() {
 			center: 'title',
 			right: 'month,agendaWeek,agendaDay'
 		},
-		{
-			url: '../../events.json',
-			color: 'yellow',   // an option!
-			textColor: 'black' // an option!
-		}
+		editable: true,
+		events: {
+				url: 'php/get-events.php',
+				error: function() {
+					$('#script-warning').show();
+				}
+			}
 	});
 });

@@ -6,47 +6,5 @@
   {
     "title": "Event B",
     "start": "2016-02-07"
-  },
-  {
-    "title": "Event C - with start time",
-    "start": "2016-02-09T16:00:00-05:00"
-  },
-  {
-    "title": "Event D - repeating",
-    "start": "2016-02-16T16:00:00-05:00"
-  },
-  {
-    "title": "Event E start and end",
-    "start": "2016-01-11",
-    "end": "2016-02-13"
-  },
-  {
-    "title": "Meeting",
-    "start": "2016-02-12T10:30:00-05:00",
-    "end": "2016-02-12T12:30:00-05:00"
-  },
-  {
-    "title": "Lunch",
-    "start": "2016-01-12T12:00:00-05:00"
-  },
-  {
-    "title": "Meeting",
-    "start": "2016-01-12T14:30:00-05:00"
-  },
-  {
-    "title": "Happy Hour",
-    "start": "2016-01-12T17:30:00-05:00"
-  },
-  {
-    "title": "Dinner",
-    "start": "2016-01-12T20:00:00"
-  },
-  {
-    "title": "Birthday Party",
-    "start": "2016-01-13T07:00:00-05:00"
-  },
-  {
-    "title": "Click for Google",
-    "start": "2016-01-28"
   }
 ]
