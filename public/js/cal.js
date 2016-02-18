@@ -6,6 +6,11 @@ $(document).ready(function() {
 			left: 'today prev,next',
 			center: 'title',
 			right: 'month,agendaWeek,agendaDay'
+		},
+		{
+			url: '../../events.json',
+			color: 'yellow',   // an option!
+			textColor: 'black' // an option!
 		}
 	});
 });
