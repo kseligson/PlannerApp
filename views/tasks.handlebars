@@ -55,18 +55,18 @@
 		</div>
 	</div>
 
-    <div class="container">
-        <div class="checkbox">
-            <label clas><input type="checkbox" id="checkbox1" class="checkbox style-2 pull-right" value= />Option 1</label>
-         </div>
-         <div class="checkbox">
-            <label><input type="checkbox" id="checkbox1" class="checkbox style-2 pull-right"/>Option 2</label>
-         </div>
-         <div class="checkbox">
-            <label><input type="checkbox" id="checkbox1" class="checkbox style-2 pull-right"/>Option 3</label>
-         </div>
+    <div class="container" id="tasks-container">
+        {{#each tasks}}
+        <div color="{{color}}">
+            <div class="task-name">{{name}}</div>
+            <div class="task-date">{{date}}</div>
+            <div class="task-time">{{time}}</div>
+            <div class="task-notes">{{notes}}</div>
+        </div>
+        {{/each}}
     </div>
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
+
 </body>
 </html>

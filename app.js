@@ -7,6 +7,7 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var handlebars = require('express3-handlebars')
+var mongoose = require('mongoose');
 
 var index = require('./routes/index');
 var calendar = require('./routes/calendar');
@@ -20,8 +21,15 @@ var accountSettings = require('./routes/accountSettings');
 var eventsummary = require('./routes/eventsummary');
 var tasksummary = require('./routes/tasksummary');
 var login = require('./routes/login');
+
+var newtasks = require('./public/js/newtasks')
 // Example route
 // var user = require('./routes/user');
+
+var local_database_name = 'peopleplanner';
+var local_database_uri  = 'mongodb://localhost/' + local_database_name
+var database_uri = process.env.MONGOLAB_URI || local_database_uri
+mongoose.connect(database_uri);
 
 var app = express();
 
@@ -58,6 +66,9 @@ app.get('/accountSettings', accountSettings.view);
 app.get('/eventsummary', eventsummary.view);
 app.get('/tasksummary', tasksummary.view);
 app.get('/login', login.view);
+
+
+app.post('/task/new', task.addTask);
 // Example route
 // app.get('/users', user.list);
 

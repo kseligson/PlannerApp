@@ -9,4 +9,16 @@ var EventSchema = new Mongoose.Schema({
   //"summary" : String,
 });
 
+
+var TaskSchema = new Mongoose.Schema({
+	"name": String,
+	"date": Date,
+	"time": String,
+	"color": String,
+	"notes": String,
+	"repeat": Boolean,
+	"remind": Boolean
+});
+
 exports.Event = Mongoose.model('Event', EventSchema);
+exports.Task = Mongoose.model('Task', TaskSchema);

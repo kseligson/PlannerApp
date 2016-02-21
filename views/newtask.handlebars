@@ -51,7 +51,7 @@
 			<div class="page-title">New Task</div>
 		</div>
 
-		<form role="form" id="new_task">
+		<form role="form" id="new-task-form">
             <div class="form-group">
                 <label for="taskName">Name</label>
                 <input type="text" class="form-control" id="taskName">
@@ -73,8 +73,8 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="taskNotes">Notes</label>
-                <textarea class="form-control" rows="3"></textarea>
+                <label for="Notes">Notes</label>
+                <textarea class="form-control" rows="3" id="taskNotes"></textarea>
             </div>
             <div class="form-group">
                 <div class="checkbox">
@@ -103,7 +103,7 @@
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox">Remind me
+                        <input type="checkbox" id="taskRemind">Remind me
                     </label>
                 </div>
             </div>
@@ -114,5 +114,40 @@
 
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
+    <script stc="/js/newtasks.js"></script>
+    <script >
+
+    
+
+
+
+    $('#new-task-form').submit(function(e) {
+        e.preventDefault();
+
+        var name = $('#new-task-form #taskName').val();
+        var date = $('#new-task-form #startDate').val();
+        var time = $('#new-task-form #startTime').val();
+        var color = $('#new-task-form #taskColor').val();
+        var notes = $('#new-task-form #taskNotes').val();
+        var remind = $('#new-task-form #taskRemind').val();
+        var json = {
+            'name': name,
+            'date':  date,
+            'time': time,
+            'color': color,
+            'notes': notes,
+        };
+
+        $.getJSON('/data.json', function(data){
+            var newTask = json;
+            data.push(newTask);
+        });
+        // issue the GET request
+    //    $.post('/tasks/new', {"tasks": json}, function() {
+     //       window.location.replace('/tasks');
+      //  } );
+    });
+
+    </script>
 </body>
 </html>
