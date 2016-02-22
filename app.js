@@ -22,7 +22,6 @@ var eventsummary = require('./routes/eventsummary');
 var tasksummary = require('./routes/tasksummary');
 var login = require('./routes/login');
 
-var newtasks = require('./public/js/newtasks')
 // Example route
 // var user = require('./routes/user');
 
@@ -68,7 +67,7 @@ app.get('/tasksummary', tasksummary.view);
 app.get('/login', login.view);
 
 
-app.post('/task/new', task.addTask);
+app.post('/tasks', tasks.addTask);
 // Example route
 // app.get('/users', user.list);
 

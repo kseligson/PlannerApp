@@ -117,9 +117,6 @@
     <script stc="/js/newtasks.js"></script>
     <script >
 
-    
-
-
 
     $('#new-task-form').submit(function(e) {
         e.preventDefault();
@@ -129,6 +126,7 @@
         var time = $('#new-task-form #startTime').val();
         var color = $('#new-task-form #taskColor').val();
         var notes = $('#new-task-form #taskNotes').val();
+        //var repeat
         var remind = $('#new-task-form #taskRemind').val();
         var json = {
             'name': name,
@@ -136,16 +134,14 @@
             'time': time,
             'color': color,
             'notes': notes,
+            'repeat': true,
+            'remind': true,
         };
 
-        $.getJSON('/data.json', function(data){
-            var newTask = json;
-            data.push(newTask);
-        });
         // issue the GET request
-    //    $.post('/tasks/new', {"tasks": json}, function() {
-     //       window.location.replace('/tasks');
-      //  } );
+        $.post('/tasks', json, function() {
+            window.location.href='/tasks';
+        } );
     });
 
     </script>
