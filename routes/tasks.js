@@ -21,7 +21,7 @@ exports.addTask = function(req, res) {
 	// make a new Project and save it to the DB
   // YOU MUST send an OK response w/ res.send();
   var newTask = new models.Task({
-    "name": form_data.title,
+    "name": form_data.name,
     "date": form_data.date,
     "time": form_data.time,
     "color": form_data.color,
