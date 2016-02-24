@@ -219,18 +219,35 @@ a:hover {
 }
 
 /* TASKS*/
-.task-name {
+.task-div {
+	margin: 10px;
+	border-left: solid; 
+}
 
+.task-name {
+	margin-left: 5px;
+	font-size: 150%;
+	font-weight: bold;
 }
 
 .task-date {
-
 }
 
 .task-time {
 
+	margin-left: 5px;
 }
 
 .task-notes {
 	
+	margin-left: 5px;
+}
+
+.removebtn {
+	float:right;
+}
+.btn-round {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
 }

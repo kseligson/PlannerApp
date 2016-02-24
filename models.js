@@ -12,7 +12,7 @@ var EventSchema = new Mongoose.Schema({
 
 var TaskSchema = new Mongoose.Schema({
 	"name": String,
-	"date": Date,
+	"date": String,
 	"time": String,
 	"color": String,
 	"notes": String,

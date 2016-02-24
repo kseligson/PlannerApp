@@ -68,6 +68,7 @@ app.get('/login', login.view);
 
 
 app.post('/tasks', tasks.addTask);
+app.post('/tasks', tasks.deleteTask);
 // Example route
 // app.get('/users', user.list);
 

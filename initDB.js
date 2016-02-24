@@ -25,13 +25,14 @@ mongoose.connect(database_uri);
 // Do the initialization here
 
 // Step 1: load the JSON data
-var data_json = require('./data.json');
+var data_json = require('./tasks.json');
 
 // Step 2: Remove all existing documents
 models.Task
   .find()
   .remove()
   .exec(onceClear); // callback to continue at
+
 
 // Step 3: load the data from the JSON file
 function onceClear(err) {
@@ -40,7 +41,11 @@ function onceClear(err) {
   // loop over the projects, construct and save an object from each one
   // Note that we don't care what order these saves are happening in...
   var to_save_count = data_json.length;
+
+  console.log("before");
   for(var i=0; i<data_json.length; i++) {
+
+    console.log("check");
     var json = data_json[i];
     var proj = new models.Tasks(json);
 
@@ -53,7 +58,7 @@ function onceClear(err) {
         console.log('DONE');
         // The script won't terminate until the 
         // connection to the database is closed
-        mongoose.connection.close()
+        mongoose.connection.close();
       }
     });
   }

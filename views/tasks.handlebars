@@ -57,16 +57,42 @@
 
     <div class="container" id="tasks-container">
         {{#each tasks}}
-        <div color="{{color}}">
+        <div class="task-div" id="task{{id}}" style="color:{{color}}; 
+    border-color: {{color}};" >
             <div class="task-name">{{name}}</div>
             <div class="task-date">{{date}}</div>
-            <div class="task-time">{{time}}</div>
-            <div class="task-notes">{{notes}}</div>
+            <div class="task-time">Due {{time}}</div>
+            <div class="removebtn"><button type="button" class="btn btn-danger btn-round" id="remove{{id}}"><span class="glyphicon glyphicon-remove"></span></button></div>
+            <div class="task-notes" id="notes{{id}}">{{notes}}</div>
         </div>
         {{/each}}
     </div>
 	<script src="https://code.jquery.com/jquery.js"></script>
-	<script    src="/js/bootstrap.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+    <script >
+        $(document).ready(function(){
+            $('.task-div').click(function(){
+                var taskID = $(this).closest('.task-div').attr('id');
+
+                var idNumber = taskID.substr('task'.length);
+                var notes = '#notes'+idNumber;
+
+                $(notes).slideToggle("fast");
+                
+            });
+
+            $('.removebtn').click(function(){
+                var taskID = $(this).closest('.task-div').attr('id');
+
+                var idNumber = taskID.substr('task'.length);
+
+                $.post('/tasks/', function() {
+                    window.location.href = '/tasks';
+                })
+
+            })
+        });
+    </script>
 
 </body>
 </html>
