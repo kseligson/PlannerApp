@@ -86,6 +86,8 @@ app.get('/editevent', editevent.view);
 app.get('/edittask', edittask.view);
 
 
+app.post('/events', events.addEvent);
+app.post('/events/:id/delete', events.deleteEvent);
 app.post('/tasks', tasks.addTask);
 app.post('/tasks/:id/delete', tasks.deleteTask);
 // Example route

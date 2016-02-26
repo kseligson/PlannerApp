@@ -51,7 +51,7 @@
 				<div class="page-title">New Event</div>
 		</div>
 
-		<form role="form" id="new_task">
+		<form role="form" id="new-event-form">
             <div class="form-group">
                 <label for="taskName">Name</label>
                 <input type="text" class="form-control" id="taskName">
@@ -69,11 +69,11 @@
             <div class="row">
                 <div class="form-group col-xs-6">
                     <label for="endDate">End Date</label>
-                    <input type="date" class="form-control" id="startDate">
+                    <input type="date" class="form-control" id="endDate">
                 </div>
                 <div class="form-group col-xs-6">
                     <label for="endTime">End Time</label>
-                    <input type="time" class="form-control" id="startTime">
+                    <input type="time" class="form-control" id="endTime">
                 </div>
             </div>
             <div class="row">
@@ -84,7 +84,7 @@
             </div>
             <div class="form-group">
                 <label for="taskNotes">Notes</label>
-                <textarea class="form-control" rows="3"></textarea>
+                <textarea class="form-control" rows="3" id="taskNotes"></textarea>
             </div>
             <div class="form-group">
                 <div class="checkbox">
@@ -117,12 +117,40 @@
                     </label>
                 </div>
             </div>
-    		<input class="btn btn-primary" align="center" type="submit" value="Save">
+    		<input id="submitbutnEvent" class="btn btn-primary" align="center" type="submit" value="Save">
     		<a href="/events" class="btn btn-default pull-right" type="button" value="Cancel">Cancel</a>
     	</form>
 	</div>
 
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
+    <!--<script stc="/js/eve.js"></script> useless? -->
+    <script>
+        $('#new-event-form').submit(function(e) {
+            e.preventDefault();
+
+            var taskName = $('#new-event-form #taskName').val();
+            var startDate = $('#new-event-form #startDate').val();
+            var endDate = $('#new-event-form #endDate').val();
+            var startTime = $('#new-event-form #startTime').val();
+            var endTime = $('#new-event-form #endTime').val();
+            var taskColor = $('#new-event-form #taskColor').val();
+            var taskNotes = $('#new-event-form #taskNotes').val();
+            var jsonEvent = {
+                'taskName' : taskName,
+                'startDate' : startDate,
+                'endDate' : endDate,
+                'startTime' : startTime,
+                'endTime' : endTime,
+                'taskColor' : taskColor,
+                'taskNotes' : taskNotes
+            };
+           
+            $.post('/events', jsonEvent, function() {
+               console.log(jsonEvent);
+            } );
+        });
+    </script>
+
 </body>
 </html>
