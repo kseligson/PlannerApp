@@ -23,7 +23,7 @@ var tasksummary = require('./routes/tasksummary');
 var login = require('./routes/login');
 var editevent = require('./routes/editevent');
 var edittask = require('./routes/edittask');
-
+var tester = require('./routes/tester');
 // Example route
 // var user = require('./routes/user');
 
@@ -84,10 +84,12 @@ app.get('/tasksummary', tasksummary.view);
 app.get('/login', login.view);
 app.get('/editevent', editevent.view);
 app.get('/edittask', edittask.view);
+app.get('/tester', tester.view)
 
 
 app.post('/tasks', tasks.addTask);
 app.post('/tasks/:id/delete', tasks.deleteTask);
+app.post('/tasks/:id/edit', edittask.open);
 // Example route
 // app.get('/users', user.list);
 

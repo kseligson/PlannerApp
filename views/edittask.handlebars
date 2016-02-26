@@ -51,30 +51,31 @@
             <div class="page-title">Edit Task</div>
         </div>
 
-        <form role="form" id="new-task-form">
+        {{#each tasks}}
+        <form role="form" id="new-task-form" style="color:#FFFFFF;"ls>
             <div class="form-group">
                 <label for="taskName">Name</label>
-                <input type="text" class="form-control" id="taskName">
+                <input type="text" class="form-control" id="taskName" value="{{name}}">
             </div>
             <div class="row">
                 <div class="form-group col-xs-6">
                     <label for="startDate">Due Date</label>
-                    <input type="date" class="form-control" id="startDate">
+                    <input type="date" class="form-control" id="startDate" value ="{{date}}">
                 </div>
                 <div class="form-group col-xs-6">
                     <label for="startTime">Time</label>
-                    <input type="time" class="form-control" id="startTime">
+                    <input type="time" class="form-control" id="startTime" value="{{time}}">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-xs-3">
                     <label for="taskColor">Color</label>
-                    <input type="color" class="form-control" id="taskColor">
+                    <input type="color" class="form-control" id="taskColor" >
                 </div>
             </div>
             <div class="form-group">
                 <label for="Notes">Notes</label>
-                <textarea class="form-control" rows="3" id="taskNotes"></textarea>
+                <textarea class="form-control" rows="3" id="taskNotes" value="{{notes}}"></textarea>
             </div>
             <div class="form-group">
                 <div class="checkbox">
@@ -110,6 +111,8 @@
             <input id="submitbutn" class="btn btn-primary" align="center" type="submit" value="Save">
             <a href="/tasks" class="btn btn-default pull-right" type="button" value="Cancel">Cancel</a>
         </form>
+
+        {{/each}}
     </div>
 
 

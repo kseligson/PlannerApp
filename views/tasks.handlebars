@@ -107,8 +107,11 @@
             });
 
             $('.editbtn').click(function() {
-                 $.post('/tasks/'+idNumber+'/delete', function() {
-                    window.location.href = '/tasks';
+                var taskID = $(this).closest('.task-div').attr('id');
+                var idNumber = taskID.substr('task'.length);
+                
+                 $.post('/tasks/'+idNumber+'/edit', function() {
+                    window.location.href = '/edittask';
                 });
             });
         });
