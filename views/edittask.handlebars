@@ -1,0 +1,117 @@
+<!doctype html>
+
+<html>
+<head>
+	<title>People's Planner</title>	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="/css/project.css" rel="stylesheet">
+	<!-- this is a comment in HTML -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->        
+</head>
+
+<body>
+	<div class="navbar-wrapper">
+        <div class="container">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" style="text-align: center"href="/">People's<br>Planner
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right" style="margin-top: 12px; text-align: right">
+                        	<li><a href="/">Home</a></li>
+                            {{#each nav-link}}
+                                <li><a href="{{link}}">{{text}}</a></li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-header">
+            <div class="page-title">Edit Task</div>
+        </div>
+
+        <form role="form" id="new-task-form">
+            <div class="form-group">
+                <label for="taskName">Name</label>
+                <input type="text" class="form-control" id="taskName">
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-6">
+                    <label for="startDate">Due Date</label>
+                    <input type="date" class="form-control" id="startDate">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label for="startTime">Time</label>
+                    <input type="time" class="form-control" id="startTime">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-3">
+                    <label for="taskColor">Color</label>
+                    <input type="color" class="form-control" id="taskColor">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Notes">Notes</label>
+                <textarea class="form-control" rows="3" id="taskNotes"></textarea>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">Repeat Task
+                    </label>
+                </div>
+            </div>
+            <div class="form-group col-xs-offset-2" id="customOptions">
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="repeatOptions" id="repeatDaily" value="daily">Daily
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="repeatOptions" id="repeatWeekly" value="weekly">Weekly
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="repeatOptions" id="repeatCustom" value="custom">Custom
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" id="taskRemind">Remind me
+                    </label>
+                </div>
+            </div>
+            <input id="submitbutn" class="btn btn-primary" align="center" type="submit" value="Save">
+            <a href="/tasks" class="btn btn-default pull-right" type="button" value="Cancel">Cancel</a>
+        </form>
+    </div>
+
+
+</body>
+</html>

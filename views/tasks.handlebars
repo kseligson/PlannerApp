@@ -50,7 +50,7 @@
 		<div class="page-header">
 			<div class="row">
 				<div class="col-xs-10 page-title">Tasks</div>
-				<div class="col-xs-2 add-label"><a href="/newtask">+</a></div>
+                <div class="col-xs-2 add-label"><a href="/newtask">+</a></div>
 			</div>
 		</div>
 	</div>
@@ -59,10 +59,22 @@
         {{#each tasks}}
         <div class="task-div" id="task{{id}}" style="color:{{color}}; 
     border-color: {{color}};" >
-            <div class="task-name">{{name}}</div>
-            <div class="task-date">{{date}}</div>
-            <div class="task-time">Due {{time}}</div>
-            <div class="removebtn"><button type="button" class="btn btn-danger btn-round" id="remove{{id}}"><span class="glyphicon glyphicon-remove"></span></button></div>
+            <div class="task-name">{{name}}
+                <div class="removebtn">
+                    <button type="button" class="btn btn-round" style="background-color:transparent; color:{{color}};" id="remove{{id}}">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+
+                <div class="editbtn">
+                    <button type="button" class="btn btn-round" style="background-color:transparent; color:{{color}};" id="edit{{id}}">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                </div>
+
+            </div>
+            
+            <div class="task-due">Due on <strong>{{date}}</strong> at <strong>{{time}}</strong></div>
             <div class="task-notes" id="notes{{id}}">{{notes}}</div>
         </div>
         {{/each}}
@@ -81,16 +93,24 @@
                 
             });
 
+            $(".task-notes").hide();
+
             $('.removebtn').click(function(){
                 var taskID = $(this).closest('.task-div').attr('id');
 
                 var idNumber = taskID.substr('task'.length);
 
-                $.post('/tasks/', function() {
+                $.post('/tasks/'+idNumber+'/delete', function() {
                     window.location.href = '/tasks';
-                })
+                });
 
-            })
+            });
+
+            $('.editbtn').click(function() {
+                 $.post('/tasks/'+idNumber+'/delete', function() {
+                    window.location.href = '/tasks';
+                });
+            });
         });
     </script>
 

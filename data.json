@@ -33,13 +33,7 @@
 	],
 	"tasks": [
 		{
-			"name": "test1",
-			"date": "2016-12-31",
-			"time": "00:11",
-			"color": "#FFFFFF",
-			"notes": "asdasdad",
-			"repeat": false,
-			"remind": false
+			
 		}
 	]
 }

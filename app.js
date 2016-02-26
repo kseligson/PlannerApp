@@ -21,15 +21,32 @@ var accountSettings = require('./routes/accountSettings');
 var eventsummary = require('./routes/eventsummary');
 var tasksummary = require('./routes/tasksummary');
 var login = require('./routes/login');
+var editevent = require('./routes/editevent');
+var edittask = require('./routes/edittask');
 
 // Example route
 // var user = require('./routes/user');
+
 
 var local_database_name = 'peopleplanner';
 var local_database_uri  = 'mongodb://localhost/' + local_database_name
 var database_uri = process.env.MONGOLAB_URI || local_database_uri
 mongoose.connect(database_uri);
 
+
+/*
+// Retrieve
+var MongoClient = require('mongodb').MongoClient;
+
+// Connect to the db
+var uri =  "mongodb://heroku_2j43lmsj:6geip6jl2c4jcad3udhr6da0m9@ds013918.mongolab.com:13918/heroku_2j43lmsj";
+MongoClient.connect(uri, function(err, db) {
+   if(!err) {
+    console.log("We are connected");
+  }
+
+});
+*/
 var app = express();
 
 // all environments
@@ -65,10 +82,12 @@ app.get('/accountSettings', accountSettings.view);
 app.get('/eventsummary', eventsummary.view);
 app.get('/tasksummary', tasksummary.view);
 app.get('/login', login.view);
+app.get('/editevent', editevent.view);
+app.get('/edittask', edittask.view);
 
 
 app.post('/tasks', tasks.addTask);
-app.post('/tasks', tasks.deleteTask);
+app.post('/tasks/:id/delete', tasks.deleteTask);
 // Example route
 // app.get('/users', user.list);
 

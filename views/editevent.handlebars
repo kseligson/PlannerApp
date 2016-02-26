@@ -30,7 +30,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" style="text-align: center" href="/">People's<br>Planner
+                        <a class="navbar-brand" style="text-align: center"href="/">People's<br>Planner
                         </a>
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
@@ -46,49 +46,15 @@
         </div>
     </div>
 
-	<div class="settings-profile" >
-		<figure align="center">
-			<img class="img-circle" id="profile-picture" src="img/default.png"/>
-		</figure>
+	<div class="container">
+		<div class="page-header">
+			<div class="row">
+				<div class="col-xs-10 page-title">Edit Event</div>
+			</div>
+		</div>
 	</div>
 
-	<div class="settings">
-		<ul>
-			<li><button id="notif-toggle">Notifications</button></li>
-			<li class="toggle-li"><a href="#" id="emailnotif">Email On</a></li>
-			<li class="toggle-li"><a href="#" id="textnotif">Texting On</a></li>
-			{{#each settings-list}}
-			<li class="liref">
-				<a href="/{{link}}">{{caption}}</a>
-			</li>
-			{{/each}}
 
-		</ul>
-	</div>
-
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	<script>
-	$(document).ready(function(){
-	    $("button").click(function(){
-	        $('.toggle-li').slideToggle("fast");
-	    });
-	    $("#emailnotif").click(function(){
-	    	 $(this).text(function(i, text){
-          		return text === "Email On" ? "Email Off" : "Email On";
-      		})
-	    });
-	    $("#textnotif").click(function(){
-	    	 $(this).text(function(i, text){
-          		return text === "Texting On" ? "Texting Off" : "Texting On";
-      		})
-	    });
-
-	});
-</script>
 
 </body>
 </html>

@@ -5,7 +5,7 @@ exports.view = function(req, res) {
 	//controller code goes here
 	models.Task
 		.find()
-		.sort('date')
+		.sort('-date')
 		.exec(renderTasks);
 
 	function renderTasks(err, tasks) {
