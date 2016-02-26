@@ -67,17 +67,17 @@
 <!-- temporary until fullcalendar/ajax implemented -->
         <div class="container" id="events-container">
         {{#each events}}
-        <div class="event-div" id="event{{id}}" style="color:{{color}}; 
-    border-color: {{color}};" >
+        <div class="event-div" id="event{{id}}" style="color:{{taskColor}}; 
+    border-color: {{taskColor}};" >
             <div class="event-name">{{taskName}}
                 <div class="removebtnEvent">
-                    <button type="button" class="btn btn-round" style="background-color:transparent; color:{{color}};" id="remove{{id}}">
+                    <button type="button" class="btn btn-round" style="background-color:transparent; color:{{taskColor}};" id="remove{{id}}">
                         <span class="glyphicon glyphicon-remove"></span>
                     </button>
                 </div>
 
                 <div class="editbtnEvent">
-                    <button type="button" class="btn btn-round" style="background-color:transparent; color:{{color}};" id="edit{{id}}">
+                    <button type="button" class="btn btn-round" style="background-color:transparent; color:{{taskColor}};" id="edit{{id}}">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </button>
                 </div>

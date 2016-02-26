@@ -147,7 +147,8 @@
             };
            
             $.post('/events', jsonEvent, function() {
-               console.log(jsonEvent);
+               //console.log(jsonEvent);
+                   window.location.href = '/events';
             } );
         });
     </script>
