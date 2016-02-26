@@ -258,3 +258,44 @@ a:hover {
     height: 40px;
     border-radius: 50%;
 }
+
+/* TEMP EVENTS */
+.event-div {
+	margin: 10px;
+	border-left: 6px solid;
+	background-color: #f5fffa;
+	border-radius: 5px; 
+}
+
+.event-name {
+	margin-left: 10px;
+	font-size: 150%;
+	font-weight: bold;
+}
+
+.event-due {
+	margin-left: 10px;
+}
+
+.event-notes {
+	
+	margin-left: 10px;
+	margin-bottom: 5px;
+}
+
+.editbtnEvent {
+	float: right;
+	margin-right: 5px;
+	margin-top: 5px;	
+}
+
+.removebtnEvent {
+	float: right;
+	margin-top: 5px;
+}
+
+.btn-round {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}

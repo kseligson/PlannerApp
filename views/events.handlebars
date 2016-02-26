@@ -10,11 +10,12 @@
 	<link href="/css/project.css" rel="stylesheet">
 	<!-- this is a comment in HTML -->
 
-    <link rel='stylesheet' href='fullcalendar/fullcalendar.css'>
+<!--    <link rel='stylesheet' href='fullcalendar/fullcalendar.css'>
     <script src="/fullcalendar/lib/jquery.min.js"></script>
     <script src="/fullcalendar/lib/moment.min.js"></script>
     <script src="/fullcalendar/fullcalendar.js"></script>
     <script src="/js/eve.js"></script>
+-->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -52,7 +53,7 @@
         </div>
     </div>
 
-	<div class="container events">
+	<div class="container">
 		<div class="page-header">
 			<div class="row">
 				<div class="col-xs-10 page-title">Events</div>
@@ -60,13 +61,73 @@
 			</div>
 		</div>
 
-        <div id="events" class="fc" style="color: #1899d6"></div>
+        <!-- <div id="events" class="fc" style="color: #1899d6"></div> for temp -->
 	</div>
+
+<!-- temporary until fullcalendar/ajax implemented -->
+        <div class="container" id="events-container">
+        {{#each events}}
+        <div class="event-div" id="event{{id}}" style="color:{{taskColor}}; 
+    border-color: {{taskColor}};" >
+            <div class="event-name">{{taskName}}
+                <div class="removebtnEvent">
+                    <button type="button" class="btn btn-round" style="background-color:transparent; color:{{taskColor}};" id="remove{{id}}">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+
+                <div class="editbtnEvent">
+                    <button type="button" class="btn btn-round" style="background-color:transparent; color:{{taskColor}};" id="edit{{id}}">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                </div>
+
+            </div>
+            
+            <div class="event-due">Date <strong>{{startDate}}</strong> through <strong>{{endDate}}</strong> at Time <strong>{{startTime}}</strong> through <strong>{{endTime}}</strong></div>
+            <div class="event-notes" id="taskNotes{{id}}">{{taskNotes}}</div>
+        </div>
+        {{/each}}
+    </div>
 
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
-    <script src="/fullcalendar/lib/jquery.min.js"></script>
+<!--    <script src="/fullcalendar/lib/jquery.min.js"></script>
     <script src="/fullcalendar/lib/moment.min.js"></script>
     <script src="/fullcalendar/fullcalendar.js"></script>
+-->
+    <!-- also added -->
+    <script>
+        $(document).ready(function(){
+            $('.event-div').click(function(){
+                var eventID = $(this).closest('.event-div').attr('id');
+
+                var idNumber = eventID.substr('event'.length);
+                var taskNotes = '#taskNotes' + idNumber;
+
+                $(taskNotes).slideToggle("fast");
+
+            });
+
+            $(".event-notes").hide();
+
+            $('.removebtnEvent').click(function(){
+                var eventID = $(this).closest('.event-div').attr('id');
+
+                var idNumber = eventID.substr('event'.length);
+
+                $.post('/events/'+idNumber+'/delete', function() {
+                   window.location.href = '/events';
+                });
+
+            });
+
+            $('.editbtnEvent').click(function() {
+                 $.post('/events/'+idNumber+'/delete', function() {
+                    window.location.href = '/events';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
