@@ -4,7 +4,7 @@ var data = require('../data.json');
  */
 
 exports.view = function(req, res){
-  var today = new Date();
+  /*var today = new Date();
   var month = today.getMonth();
   var date = today.getDate();
 
@@ -50,7 +50,7 @@ exports.view = function(req, res){
   var curDate = {
     "month": month,
     "date": date
-  }
+  };*/
 
   res.render('index', data);
 };
