@@ -2,15 +2,23 @@ var data = require('../data.json');
 var models = require('../models.js');
 var ID = null;
 
+/*
 exports.view = function(req, res) {
+    
+    console.log(ID);
+    if(ID = null) {
     //controller code goes here
     res.render('edittask', data);
+      }
+      else {
+     models.Task.findOne({"_id": ID}, function(err, tasks) {
+      res.render('edittask', { 'tasks': tasks });
+  });
+}
 };
-
-exports.open = function(req, res) {
+*/
+exports.view = function(req, res) {
 	var taskID = req.params.id;
-
-	console.log(taskID);
   // find the project and remove it
   // YOU MUST send an OK response w/ res.send();
   models.Task.findOne({"_id": taskID}, function(err, tasks) {

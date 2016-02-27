@@ -107,11 +107,13 @@
             });
 
             $('.editbtn').click(function() {
+                console.log('asdada');
                 var taskID = $(this).closest('.task-div').attr('id');
                 var idNumber = taskID.substr('task'.length);
                 
-                 $.post('/tasks/'+idNumber+'/edit', function() {
-                    window.location.href = '/edittask';
+                 $.get('edittask', {id : idNumber}, function() {
+                    console.log("id"+taskID);
+                    window.location.href = '/tasks';
                 });
             });
         });

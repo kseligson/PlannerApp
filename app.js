@@ -91,7 +91,7 @@ app.post('/events', events.addEvent);
 app.post('/events/:id/delete', events.deleteEvent);
 app.post('/tasks', tasks.addTask);
 app.post('/tasks/:id/delete', tasks.deleteTask);
-app.post('/tasks/:id/edit', edittask.open);
+//app.post('/tasks/:id/edit', edittask.open);
 // Example route
 // app.get('/users', user.list);
 
