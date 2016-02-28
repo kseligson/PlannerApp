@@ -59,7 +59,7 @@
         {{#each tasks}}
         <div class="task-div" id="task{{id}}" style="color:{{color}}; 
     border-color: {{color}};" >
-            <div class="task-name">{{name}}
+            <div class="main-task"> <div class="task-name" contenteditable>{{name}}</div>
                 <div class="removebtn">
                     <button type="button" class="btn btn-round" style="background-color:transparent; color:{{color}};" id="remove{{id}}">
                         <span class="glyphicon glyphicon-remove"></span>
@@ -79,6 +79,70 @@
         </div>
         {{/each}}
     </div>
+
+
+    <div class="container" id="edit-task-container">
+                <form role="form" id="new-task-form" style="color:#FFFFFF;"ls>
+            <div class="form-group">
+                <label for="taskName">Name</label>
+                <input type="text" class="form-control" id="taskName" value="{{name}}">
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-6">
+                    <label for="startDate">Due Date</label>
+                    <input type="date" class="form-control" id="startDate" value ="{{date}}">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label for="startTime">Time</label>
+                    <input type="time" class="form-control" id="startTime" value="{{time}}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-3">
+                    <label for="taskColor">Color</label>
+                    <input type="color" class="form-control" id="taskColor" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Notes">Notes</label>
+                <textarea class="form-control" rows="3" id="taskNotes" value="{{notes}}"></textarea>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">Repeat Task
+                    </label>
+                </div>
+            </div>
+            <div class="form-group col-xs-offset-2" id="customOptions">
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="repeatOptions" id="repeatDaily" value="daily">Daily
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="repeatOptions" id="repeatWeekly" value="weekly">Weekly
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="repeatOptions" id="repeatCustom" value="custom">Custom
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" id="taskRemind">Remind me
+                    </label>
+                </div>
+            </div>
+            <input id="submitbutn" class="btn btn-primary" align="center" type="submit" value="Save">
+            <a href="/tasks" class="btn btn-default pull-right" type="button" value="Cancel">Cancel</a>
+        </form>
+    </div>
+    
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
     <script >
@@ -90,9 +154,9 @@
                 var notes = '#notes'+idNumber;
 
                 $(notes).slideToggle("fast");
-                
             });
 
+            $("#edit-task-container").hide();
             $(".task-notes").hide();
 
             $('.removebtn').click(function(){
@@ -110,10 +174,12 @@
                 console.log('asdada');
                 var taskID = $(this).closest('.task-div').attr('id');
                 var idNumber = taskID.substr('task'.length);
+
+                 $("#edit-task-container").show();
+                 $("#tasks-container").hide();
+
                 
-                 $.get('edittask', {id : idNumber}, function() {
-                    console.log("id"+taskID);
-                    window.location.href = '/tasks';
+                 $.post('/tasks/'+idNumber+'/edit', {id: idNumber}, function() {
                 });
             });
         });
