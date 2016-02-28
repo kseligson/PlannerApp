@@ -1,5 +1,5 @@
 var data = require('../data.json');
-var models = require('../models.js')
+var models = require('../models.js');
 
 exports.view = function(req, res) {
 	//var name = req.params.name;
@@ -9,7 +9,7 @@ exports.view = function(req, res) {
 		.exec(renderEvents);
 
 	function renderEvents(err, events) {
-		res.render('events', {'events': events});
+		res.render('events', {'events': events, data});
 	}
 };
 

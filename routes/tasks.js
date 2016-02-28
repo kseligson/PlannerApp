@@ -1,7 +1,11 @@
 
 var data = require('../data.json')
 var models = require('../models.js')
+<<<<<<< HEAD
 var taskJSON = require('../tasks.json')
+=======
+//require('../twilio.js');
+>>>>>>> 5dbe2b3dc3934b18e3be3c242ab6f9338e3d661f
 
 exports.view = function(req, res) {
 	//controller code goes here

@@ -35,9 +35,10 @@
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right" style="margin-top: 12px; text-align: right">
                         	<li><a href="/">Home</a></li>
-                            {{#each nav-link}}
-                                <li><a href="/{{link}}">{{text}}</a></li>
-                            {{/each}}
+                            <li><a href="/calendar">Calendar</a></li>
+                            <li><a href="/events">Events</a></li>
+                            <li><a href="/tasks">Tasks</a></li>
+                            <li><a href="settings">Settings</a></li>
                         </ul>
                     </div>
                 </div>
@@ -46,14 +47,14 @@
     </div>
     
 	<div class="container home-body">
-		<div class="greeting">Hello, user!</div>
+		<div class="greeting"><span id="greetingMessage"></span>, user!</div>
 		<div class="profile">
 			<figure align="center">
 				<img class="img-circle" id="profile-picture" src="img/default.png"/>
 			</figure>
 		</div>
 
-		<div class="day-summary">Today is ______.<br>You have ____ events and _____ unfinished tasks today.</div>
+		<div class="day-summary">Today is <span id="today"></span>.<br>You have <span id="todayEvents">____</span> events and <span id="todayTasks">____</span> unfinished tasks today.</div>
 
 		<div id="bottom-nav" style="text-align: center">
 			<div class="row">
@@ -73,5 +74,6 @@
 
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/project.js"></script>
 </body>
 </html>
