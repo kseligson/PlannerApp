@@ -55,7 +55,6 @@ window.fbAsyncInit = function() {
 function changeUser(response) {
   console.log('Changing Facebook user.');
   console.log(response);
-  //$('.facebookLogin').hide()
   $('#name').text(response.first_name);
   $('#profile-picture').attr('src', response.picture.data.url);
 }
