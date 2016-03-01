@@ -72,24 +72,25 @@
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	<script>
-	$(document).ready(function(){
-	    $("button").click(function(){
-	        $('.toggle-li').slideToggle("fast");
-	    });
-	    $("#emailnotif").click(function(){
-	    	 $(this).text(function(i, text){
-          		return text === "Email On" ? "Email Off" : "Email On";
-      		})
-	    });
-	    $("#textnotif").click(function(){
-	    	 $(this).text(function(i, text){
-          		return text === "Texting On" ? "Texting Off" : "Texting On";
-      		})
-	    });
+		<script>
+		$(document).ready(function(){
+		    $("button").click(function(){
+		        $('.toggle-li').slideToggle("fast");
+		    });
+		    $("#emailnotif").click(function(){
+		    	 $(this).text(function(i, text){
+	          		return text === "Email On" ? "Email Off" : "Email On";
+	      		})
+		    });
+		    $("#textnotif").click(function(){
+		    	 $(this).text(function(i, text){
+	          		return text === "Texting On" ? "Texting Off" : "Texting On";
+	      		})
+		    });
+		});
+	</script>
 
-	});
-</script>
-
+	{{> facebook}}
+    <script src="/js/facebook.js"></script>
 </body>
 </html>

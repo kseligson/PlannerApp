@@ -31,23 +31,32 @@ window.fbAsyncInit = function() {
   });
 
   FB.getLoginStatus(function(response) {
+    console.log(window.location);
     if (response.status === 'connected') {
       // the user is logged in and has authenticated your
       // app, and response.authResponse supplies
       // the user's ID, a valid access token, a signed
       // request, and the time the access token 
       // and signed request each expire
+      if (window.location.pathname == '/login') {
+        window.location.href = '/';
+      }
+
       var uid = response.authResponse.userID;
       var accessToken = response.authResponse.accessToken;
-      console.log(uid);
+      console.log('Facebook user ID: ' + uid);
       FB.api('/me?fields=name,first_name,picture.width(480)', changeUser);
     } else if (response.status === 'not_authorized') {
       // the user is logged in to Facebook, 
       // but has not authenticated your app
-      window.location.href = '/login';
+      if (window.location.pathname != '/login') {
+        window.location.href = '/login';
+      }
     } else {
       // the user isn't logged in to Facebook.
-      window.location.href = '/login';
+      if (window.location.pathname != '/login') {
+        window.location.href = '/login';
+      }
     }
   });
 };
@@ -55,6 +64,7 @@ window.fbAsyncInit = function() {
 function changeUser(response) {
   console.log('Changing Facebook user.');
   console.log(response);
-  $('#name').text(response.first_name);
+  $('#first-name').text(response.first_name);
+  $('#name').text(response.name);
   $('#profile-picture').attr('src', response.picture.data.url);
 }
