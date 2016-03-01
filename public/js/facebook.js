@@ -44,10 +44,10 @@ window.fbAsyncInit = function() {
     } else if (response.status === 'not_authorized') {
       // the user is logged in to Facebook, 
       // but has not authenticated your app
-      window.location.href = '/';
+      window.location.href = '/login';
     } else {
       // the user isn't logged in to Facebook.
-      window.location.href = '/';
+      window.location.href = '/login';
     }
   });
 };
