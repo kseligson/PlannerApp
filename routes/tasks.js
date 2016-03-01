@@ -1,11 +1,6 @@
 
 var data = require('../data.json')
 var models = require('../models.js')
-<<<<<<< HEAD
-var taskJSON = require('../tasks.json')
-=======
-//require('../twilio.js');
->>>>>>> 5dbe2b3dc3934b18e3be3c242ab6f9338e3d661f
 
 exports.view = function(req, res) {
 	//controller code goes here
@@ -35,7 +30,7 @@ exports.addTask = function(req, res) {
   };
   var display_date = date_obj.toLocaleDateString('en-US', options);
 
-
+  console.log(form_data.time);
   //var newData = JSON.parse(data);  //parse the JSON
   data.tasks.push({        //add the employee
     "name": form_data.name,
@@ -46,6 +41,8 @@ exports.addTask = function(req, res) {
     "repeat": form_data.repeat,
     "remind": form_data.remind
   });
+
+  res.redirect('/tasks');
   //data = JSON.stringify(newData);  //reserialize to JSON
 /*
 	// make a new Project and save it to the DB
@@ -84,13 +81,13 @@ exports.deleteTask = function(req, res) {
     }
 }
 
-exports.editTask = function(req, res) {
-  var taskID = req.params.id;
-  // find the project and remove it
-  // YOU MUST send an OK response w/ res.send();
-  models.Task.findOne({"_id": taskID}, function(err, tasks) {
-    console.log(tasks);
-    res.render('edittask', { 'tasks': tasks });
-  });
+exports.nameChange = function(req, res) {
+  var form_data = req.body;
 
+  for (var i=0; i<data.length; i++) {
+    if (data[i].Id == req.params.id) {
+      data[i].name = req.params.name;
+      break;
+    }
+  }
 }

@@ -69,8 +69,12 @@
             </div>
             <div class="row">
                 <div class="form-group col-xs-3">
-                    <label for="taskColor">Color</label>
-                    <input type="color" class="form-control" id="taskColor">
+                    <select id="priority" name="Priority">
+                        <option value="#F21414">Urgent</option>
+                        <option value="#F4C7C3">Incomplete</option>
+                        <option value="#FCE8B2">In Progress</option>
+                        <option value="#B7E1CD">Complete</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
@@ -121,27 +125,30 @@
 
     $('#new-task-form').submit(function(e) {
         e.preventDefault();
-
+        var rbool = false;
         var name = $('#new-task-form #taskName').val();
         var date = $('#new-task-form #startDate').val();
         var time = $('#new-task-form #startTime').val();
-        var color = $('#new-task-form #taskColor').val();
+        var color = $('#new-task-form #priority').val();
         var notes = $('#new-task-form #taskNotes').val();
         //var repeat
-        var remind = $('#new-task-form #taskRemind').val();
+        if ($('#new-task-form #taskRemind').is(":checked")) {
+              // it is checked
+              rbool=true;
+        }
         var id = name + date + time + color + notes;
 
-        console.log(remind);
-        console.log(id);
 
+        console.log(rbool);
         var json = {
+            'id': id,
             'name': name,
             'date': date,
             'time': time,
             'color': color,
             'notes': notes,
             'repeat': true,
-            'remind': true,
+            'remind': rbool,
         };
 
         $.post('tasks', json, function(){

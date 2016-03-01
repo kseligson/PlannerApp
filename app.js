@@ -93,12 +93,8 @@ app.post('/events/:id/delete', events.deleteEvent);
 
 app.post('/tasks', tasks.addTask);
 app.post('/tasks/:id/delete', tasks.deleteTask);
-<<<<<<< HEAD
-app.post('/tasks/:id/edit', tasks.editTask);
-//app.post('/tasks/:id/edit', edittask.open);
-=======
-
->>>>>>> 5dbe2b3dc3934b18e3be3c242ab6f9338e3d661f
+app.post('/edittask/:id', edittask.edit);
+app.post('/tasks/:id/namechange', tasks.nameChange);
 // Example route
 // app.get('/users', user.list);
 
