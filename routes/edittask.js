@@ -34,6 +34,7 @@ exports.view = function(req, res) {
     res.render('edittask', data.tasks[0]);
   }
 
+  console.log(jsonObj);
   res.render('edittask', jsonObj);
 }
 
@@ -59,6 +60,6 @@ exports.edit = function(req, res) {
   console.log(display_date);
 
   jsonObj.date = display_date;
-  
+
   res.render('edittask', jsonObj);
 }
