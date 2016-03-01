@@ -44,71 +44,22 @@
             </nav>
         </div>
     </div>
-    
+
 	<div class="container home-body">
-		
-	</div>
+        <div class="greeting"><span id="greetingMessage"></span>!</div>
 
+        <div class="day-summary"><br><h3>Please Log In</h3><br></div>
 
-	<div class="container">
-	    <div class="row">
-	        <div class="col-sm-6 col-md-4 col-md-offset-4">
-	        	<div>
-	        	</div>
-	            <h2 class="text-center login-title text-primary">Hello! Please Sign In</h2>
-	            <br>
-				<br>
-	            <div class="account-wall">
-					<div class="profile">
-						<figure align="center">
-							<img class="img-circle" id="profile-picture" src="img/default.png"/>
-						</figure>
-						<br>
-						<br>
-						<br>
-					</div>
-
-	                <form class="form-signin">
-	                <input type="text" class="form-control" placeholder="Email" required autofocus>
-	                <input type="password" class="form-control" placeholder="Password" required>
-	                <button class="btn btn-lg btn-primary btn-block" type="submit">
-	                    Sign in</button>
-	                <label class="checkbox pull-left">
-	                    <input type="checkbox" value="remember-me">
-	                    Remember me
-	                </label>
-	                <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
-	                </form>
-	            </div>
-	            <a href="#" class="text-center new-account">Create an account </a>
-	        </div>
-	    </div>
-	</div>
-
-<!--
-	<div class="container">
-        <div class="card card-container">
-            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> --
-            <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-            <p id="profile-name" class="profile-name-card"></p>
-            <form class="form-signin">
-                <span id="reauth-email" class="reauth-email"></span>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                <div id="remember" class="checkbox">
-                    <label>
-                        <input type="checkbox" value="remember-me"> Remember me
-                    </label>
-                </div>
-                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
-            </form><!-- /form --
-            <a href="#" class="forgot-password">
-                Forgot the password?
-            </a>
-        </div><!-- /card-container --
-    </div><!-- /container -->
+        <div align="center">
+            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+            </fb:login-button>
+        </div>
+    </div>
 
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
+    <script src="/js/project.js"></script>
+    {{> facebook}}
+    <script src="/js/facebook.js"></script>
 </body>
 </html>
