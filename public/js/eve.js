@@ -3,19 +3,19 @@ $(document).ready(function(){
 })
 
 function initializePage() {
-    function newEvent(data_json) {
+    function newEvent(tasks_json) {
         // We need to compute a display string for the date
         // Search 'toLocaleDateString' online for more details.
 
-        console.log(data_json);
+        console.log(tasks_json);
         // compose the HTML
         var new_html =
-            '<div class="event-name">'+data_json['taskName']+'</div>'+
-            '<div class="event-startdate">'+data_json['startDate']+'</div>'+
-            '<div class="event-enddate">'+data_json['endDate']+'</div>'+
-            '<div class="event-starttime">'+data_json['startTime']+'</div>'+
-            '<div class="event-endtime">'+data_json['endDate']+'</div>'+
-			'<div class="event-notes">'+data_json['taskNotes']+'</div>';
+            '<div class="event-name">'+tasks_json['taskName']+'</div>'+
+            '<div class="event-startdate">'+tasks_json['startDate']+'</div>'+
+            '<div class="event-enddate">'+tasks_json['endDate']+'</div>'+
+            '<div class="event-starttime">'+tasks_json['startTime']+'</div>'+
+            '<div class="event-endtime">'+tasks_json['endDate']+'</div>'+
+			'<div class="event-notes">'+tasks_json['taskNotes']+'</div>';
 
         // get the DIV to add content to
         var details_div = $('#event' + ' .details');
