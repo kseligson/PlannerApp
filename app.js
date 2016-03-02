@@ -29,10 +29,10 @@ var testing = require('./routes/testing');
 // Example route
 // var user = require('./routes/user');
 
-var local_database_name = 'peopleplanner';
+var local_database_name = 'PlannerApp';
 var local_database_uri  = 'mongodb://localhost/' + local_database_name;
-var heroku_database_uri = 'mongodb://<dbuser>:<dbpassword>@ds013918.mlab.com:13918/heroku_2j43lmsj?authMode=scram-sha1' || local_database_uri;
-mongoose.connect(heroku_database_uri);
+// var heroku_database_uri = 'mongodb://<dbuser>:<dbpassword>@ds013918.mlab.com:13918/heroku_2j43lmsj?authMode=scram-sha1' || local_database_uri;
+mongoose.connect(local_database_uri);
 
 
 /*

@@ -16,10 +16,11 @@ var models   = require('./models');
 
 // Connect to the Mongo database, whether locally or on Heroku
 // MAKE SURE TO CHANGE THE NAME FROM 'lab7' TO ... IN OTHER PROJECTS
-var local_database_name = 'peopleplanner';
+var local_database_name = 'PlannerApp';
 var local_database_uri  = 'mongodb://localhost/' + local_database_name;
-var heroku_database_uri = 'mongodb://<dbuser>:<dbpassword>@ds013918.mlab.com:13918/heroku_2j43lmsj?authMode=scram-sha1' || local_database_uri;
-mongoose.connect(heroku_database_uri);
+// var heroku_database_uri = 'mongodb://<dbuser>:<dbpassword>@ds013918.mlab.com:13918/heroku_2j43lmsj?authMode=scram-sha1' || local_database_uri;
+mongoose.connect(local_database_uri);
+console.log("db connected");
 
 /**
 // Retrieve
@@ -37,16 +38,14 @@ MongoClient.connect("mongodb://heroku_2j43lmsj:6geip6jl2c4jcad3udhr6da0m9@ds0139
 // Do the initialization here
 
 // Step 1: load the JSON data
-//var events_json = require('./events.json');
+var events_json = require('./events.json');
 var tasks_json = require('./tasks.json');
 
 // Step 2: Remove all existing documents
-/*
 models.Event
   .find()
   .remove()
   .exec(onceClearEvents); // callback back to continue at
-*/
 
 models.Task
   .find()
@@ -54,7 +53,6 @@ models.Task
   .exec(onceClearTasks); // callback to continue at
 
 // Step 3: load the data from the JSON file
-/*
 function onceClearEvents(err) {
   if(err) console.log(err);
 
@@ -79,7 +77,6 @@ function onceClearEvents(err) {
     });
   }
 }
-*/
 
 function onceClearTasks(err) {
   if(err) console.log(err);
