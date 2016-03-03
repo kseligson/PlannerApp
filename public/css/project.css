@@ -220,8 +220,8 @@ a:hover {
 /* TASKS*/
 .task-div {
 	margin: 10px;
+	background-color: #F5F5F5;
 	border-left: 6px solid;
-	background-color: #f3f3f3;
 	border-radius: 5px; 
 }
 
@@ -234,17 +234,17 @@ a:hover {
 }
 
 .task-due {
+	color: #656565;
 	margin-left: 10px;
 }
 
 .main-task {
-
 	margin-left: 10px;
 	margin-bottom: 5px;
 }
 
 .task-notes {
-	
+	color: #656565;
 	margin-left: 10px;
 	margin-bottom: 5px;
 }

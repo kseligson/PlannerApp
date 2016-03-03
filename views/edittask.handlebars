@@ -69,11 +69,12 @@
             </div>
             <div class="row">
                 <div class="form-group col-xs-3">
+                    <label for="priority">Priority</label>
                      <select id="priority" name="Priority" data-color="{{color}}">
                         <option value="#F21414">Urgent</option>
-                        <option value="#F4C7C3">Incomplete</option>
-                        <option value="#FCE8B2">In Progress</option>
-                        <option value="#B7E1CD">Complete</option>
+                        <option value="#F76C41">High</option>
+                        <option value="#FCC31F">Medium</option>
+                        <option value="#1CA497">Low</option>
                       </select>
                 </div>
             </div>
@@ -127,14 +128,14 @@
          if(color == '#F21414'){
                $('#priority option[value=#F21414]').attr('selected', 'selected');
           }
-          else if(color == '#F4C7C3'){
-               $('#priority option[value=#F4C7C3]').attr('selected', 'selected');
+          else if(color == '#F76C41'){
+               $('#priority option[value=#F76C41]').attr('selected', 'selected');
           }
-          else if(color == '#FCE8B2'){
-               $('#priority option[value=#FCE8B2]').attr('selected', 'selected');
+          else if(color == '#FCC31F'){
+               $('#priority option[value=#FCC31F]').attr('selected', 'selected');
           }
-          else if(color == '#B7E1CD'){
-               $('#priority option[value=#B7E1CD]').attr('selected', 'selected');
+          else if(color == '#1CA497'){
+               $('#priority option[value=#1CA497]').attr('selected', 'selected');
           }
 
         // setting notification checkbox

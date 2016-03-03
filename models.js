@@ -1,6 +1,6 @@
 /*var Mongoose = require('mongoose');
 
- model_test
+ model_test	
 var EventSchema = new Mongoose.Schema({
 	// fields are defined here
     "userID": String,

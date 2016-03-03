@@ -95,4 +95,16 @@ function initializePage() {
   	$("#today").text(month + " " + date + ", " + year);
   	$("#greetingMessage").text(greeting);
   	console.log(today.getHours());
-}
+
+  	var amtevents = 0;
+  	var amttasks = 0;
+  	$.getJSON( "../data.json", function() {
+  		amttasks = data.tasks.length;
+  		console.log("ASDDDDDDDDDDDDDDDDD" +amttasks);
+  	});
+
+
+  	$("#todayEvents").text(amtevents);
+ 
+  	$("#todayTasks").text(amttasks);
+ }
