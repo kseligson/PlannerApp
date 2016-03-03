@@ -1,4 +1,6 @@
 var data = require('../data.json');
+var events = require('../events.json');
+var tasks = require('../tasks.json');
 /*
  * GET home page.
  */
