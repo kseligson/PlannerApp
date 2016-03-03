@@ -9,17 +9,17 @@ $(document).ready(function() {
  * Function that is called when the document is ready.
  */
 function initializePage() {
-    function newTask(data_json) {
+    function newTask(tasks_json) {
         // We need to compute a display string for the date
         // Search 'toLocaleDateString' online for more details.
 
-        console.log(data_json);
+        console.log(tasks_json);
         // compose the HTML
         var new_html =
-            '<div class="task-name">'+data_json['name']+'</div>'+
-            '<div class="task-date">'+data_json['date']+'</div>'+
-            '<div class="task-time">'+data_json['time']+'</div>'+
-            '<div class="task-notes">'+data_json['notes']+'</div>';
+            '<div class="task-name">'+tasks_json['name']+'</div>'+
+            '<div class="task-date">'+tasks_json['date']+'</div>'+
+            '<div class="task-time">'+tasks_json['time']+'</div>'+
+            '<div class="task-notes">'+tasks_json['notes']+'</div>';
 
         // get the DIV to add content to
         var details_div = $('#task' + ' .details');
