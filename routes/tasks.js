@@ -80,17 +80,6 @@ exports.deleteTask = function(req, res) {
     }*/
 }
 
-exports.nameChange = function(req, res) {
-  var form_data = req.body;
-
-  for (var i=0; i<data.length; i++) {
-    if (data[i].Id == req.params.id) {
-      data[i].name = req.params.name;
-      break;
-    }
-  }
-}
-
 exports.editTask = function(req, res) {
   var form_data = req.body;
   for (var i=0; i<data.tasks.length; i++) {
