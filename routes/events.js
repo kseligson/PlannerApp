@@ -1,20 +1,24 @@
 var data = require('../data.json');
-var models = require('../models.js');
+//var models = require('../models.js');
 
 exports.view = function(req, res) {
 	//var name = req.params.name;
 	//res.render('events', data);
+
+  res.render('events', data);
+  /*
 	models.Event
 		.find()
 		.exec(renderEvents);
 
 	function renderEvents(err, events) {
 		res.render('events', {'events': events, data});
-	}
+	}*/
 };
 
 exports.addEvent = function(req, res) {
-	var form_data = req.body;
+
+/*	var form_data = req.body;
 
   var newEvent = new models.Event({
     "taskName": form_data.taskName,
@@ -32,11 +36,11 @@ exports.addEvent = function(req, res) {
   function afterSaving(err) { // this is a callback
     if(err) {console.log(err); res.send(500); }
     res.redirect('/events');
-  } 
+  } */
 }
 
 exports.deleteEvent = function(req, res) {
-  var eventID = req.params.id;
+  /*var eventID = req.params.id;
 
   // find the project and remove it
   // YOU MUST send an OK response w/ res.send();
@@ -45,5 +49,5 @@ exports.deleteEvent = function(req, res) {
   function afterQuery(err, projects) {
       if(err) console.log(err);
       res.send();
-    }
+    }*/
 }

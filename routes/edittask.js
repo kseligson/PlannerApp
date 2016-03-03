@@ -1,6 +1,6 @@
 var data = require('../data.json');
-var models = require('../models.js');
-var taskData = require('../tasks.json');
+//var models = require('../models.js');
+//var taskData = require('../tasks.json');
 var jsonObj = null;
 var idNumber = null
 
@@ -48,18 +48,23 @@ exports.edit = function(req, res) {
       jsonObj = data.tasks[i];
     }
   }
-
   var date_obj = new Date(jsonObj.date);
-  var options = {
-    year: "numeric",
-    month: "numeric",
-    day: "numeric"
-  };
-  var display_date = date_obj.toLocaleDateString('en-US', options);
 
-  console.log(display_date);
+  var year = date_obj.getFullYear();
+  var month = date_obj.getMonth()+1;
+  var day = date_obj.getDate();
+  var monstr = month;
+  var daystr = day;
+  if(month < 10) {
+    monthstr = "0"+month;
+  }
+  
+  if(day < 10) {
+    daystr = "0"+day;
+  }
 
-  jsonObj.date = display_date;
+  var fulldate = year + "-" + monthstr + "-" + daystr;
+  jsonObj.date = fulldate;
 
   res.render('edittask', jsonObj);
 }

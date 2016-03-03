@@ -35,11 +35,11 @@
 		{
 			"id": "tester",
 			"name": "Homework",
-			"date": "Fri, 03/11/16",
+			"date": "Fri, 04/01/16",
 			"time": "11:30",
 			"notes": "Project is Due",
 			"color": "#FCE8B2",
-			"repeat": "true",
+			"repeat": "1",
 			"remind": "true"
 		}
 	]

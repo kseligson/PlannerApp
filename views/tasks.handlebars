@@ -110,9 +110,10 @@
             $('.editbtn').click(function() {
                 var taskID = $(this).closest('.task-div').attr('id');
                 var idNumber = taskID.substr('task'.length);
+                console.log(taskID);
+                console.log(idNumber);
 
                 $.post('/edittask/'+idNumber, {id : idNumber} , function(){
-                console.log('asdada');
                         window.location.href = '/edittask';
                 });
             });

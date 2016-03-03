@@ -1,6 +1,6 @@
 
 var data = require('../data.json')
-var models = require('../models.js')
+//var models = require('../models.js')
 
 exports.view = function(req, res) {
 	//controller code goes here
@@ -30,7 +30,6 @@ exports.addTask = function(req, res) {
   };
   var display_date = date_obj.toLocaleDateString('en-US', options);
 
-  console.log(form_data.time);
   //var newData = JSON.parse(data);  //parse the JSON
   data.tasks.push({        //add the employee
     "name": form_data.name,
@@ -43,7 +42,6 @@ exports.addTask = function(req, res) {
   });
 
   res.redirect('/tasks');
-  //data = JSON.stringify(newData);  //reserialize to JSON
 /*
 	// make a new Project and save it to the DB
   // YOU MUST send an OK response w/ res.send();
@@ -69,7 +67,8 @@ exports.addTask = function(req, res) {
 }
 
 exports.deleteTask = function(req, res) {
-  var taskID = req.params.id;
+
+/*  var taskID = req.params.id;
 
   // find the project and remove it
   // YOU MUST send an OK response w/ res.send();
@@ -78,7 +77,7 @@ exports.deleteTask = function(req, res) {
   function afterQuery(err, projects) {
       if(err) console.log(err);
       res.send();
-    }
+    }*/
 }
 
 exports.nameChange = function(req, res) {
@@ -90,4 +89,21 @@ exports.nameChange = function(req, res) {
       break;
     }
   }
+}
+
+exports.editTask = function(req, res) {
+  var form_data = req.body;
+  for (var i=0; i<data.tasks.length; i++) {
+    if (data.tasks[i].Id == form_data.id) {
+      data.tasks[i].name = form_data.name;
+      data.tasks[i].date = form_data.date;
+      data.tasks[i].time = form_data.time;
+      data.tasks[i].notes = form_data.notes;
+      data.tasks[i].color = form_data.color;
+      data.tasks[i].repeat = form_data.repeat;
+      data.tasks[i].remind = form_data.remind; 
+    }
+  }
+
+  res.redirect('/tasks');
 }
