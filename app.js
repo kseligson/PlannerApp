@@ -26,6 +26,7 @@ var editevent = require('./routes/editevent');
 var edittask = require('./routes/edittask');
 var tester = require('./routes/tester');
 var testing = require('./routes/testing');
+var taskfirst = require('./routes/taskfirst');
 // Example route
 // var user = require('./routes/user');
 
@@ -87,6 +88,7 @@ app.get('/editevent', editevent.view);
 app.get('/edittask', edittask.view);
 app.get('/tester', tester.view)
 app.get('/testing', testing.view)
+app.get('/taskfirst', taskfirst.view);
 
 
 app.post('/events', events.addEvent);

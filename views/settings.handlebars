@@ -19,33 +19,7 @@
 </head>
 
 <body>
-	<div class="navbar-wrapper">
-        <div class="container">
-            <nav class="navbar navbar-inverse navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" style="text-align: center" href="/">People's<br>Planner
-                        </a>
-                    </div>
-                    <div id="navbar" class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav navbar-right" style="margin-top: 12px; text-align: right">
-                        	<li><a href="/">Home</a></li>
-                            <li><a href="/calendar">Calendar</a></li>
-                            <li><a href="/events">Events</a></li>
-                            <li><a href="/tasks">Tasks</a></li>
-                            <li><a href="settings">Settings</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
+	{{> navbar}}
 
 	<div class="container">
 		<div class="settings-profile">
@@ -66,37 +40,39 @@
 					<a data-toggle="modal" data-target="#helpModal" href="#">Help</a>
 				</li>
 				<li class="liref">
-					<a href="/login">Logout</a>
+					<a id="logout" href="/login">Logout</a>
 				</li>
 			</ul>
 		</div>
 	</div>
 
-	<div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            	<div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<div class="modal fade" id="helpModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					<h4 class="modal-title">People's Planner Help</h4>
 				</div>
-                <div class="modal-body">
-                    <div class="container">
-                    	<h5>Getting Started</h5>
-                    	<p></p>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+				<div class="modal-body">
+					<h5>Getting Started</h5>
+                	<p>People's Planner is a planning and organizational application for on-the-go scheduling. It allows users to keep track of all their commitments in one convenient place, whether they need to remember homework assignments, meetings, classes, appointments, or any sort of task of event! All that's needed is a Facebook account, then you can start keeping track of all your commitments on your mobile device!</p>
+                	<br>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	{{> facebook}}
+    <script src="/js/facebook.js"></script>
 		<script>
 		$(document).ready(function(){
 		    $('.toggle-li').hide();
@@ -122,11 +98,15 @@
 	          		return text === "Texting On" ? "Texting Off" : "Texting On";
 	      		})
 		    });
+		    $('#logout').click(function() {
+		    	console.log("Logout Clicked");
+		    	FB.logout(function(response){
+		    		//User is now logged out
+		    		console.log("logged out");
+		    	});
+		    });
 		});
 	</script>
-
-	{{> facebook}}
-    <script src="/js/facebook.js"></script>
     {{> googleAnalytics}}
 </body>
 </html>

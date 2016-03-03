@@ -18,25 +18,41 @@
 </head>
 
 <body>
-	{{> navbar}}
-
+	{{> navbar2}}
+    
 	<div class="container home-body">
-        <div align="center">
-            <span class="greeting" id="greetingMessage"></span><span>!</span>
-        </div>
-        <div class="day-summary"><h3>Please Log In</h3></div>
+		<div class="greeting">
+			<span id="greetingMessage"></span>, <span id="first-name">user</span>!
+		</div>
+		<div class="profile">
+			<figure align="center">
+				<img class="img-circle" id="profile-picture" src="img/default.png"/>
+			</figure>
+		</div>
 
-        <div align="center">
-            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-            </fb:login-button>
-        </div>
-    </div>
+		<div class="day-summary">Today is <span id="today"></span>.<br>You have <span id="todayEvents">____</span> events and <span id="todayTasks">____</span> unfinished tasks today.</div>
+
+		<div id="bottom-nav" style="text-align: center">
+			<div class="row">
+				{{#each nav-link}}	
+				<div class="col-xs-6">
+					<figure class="page-link">
+						<a href="/{{link}}">
+							<img class="img-circle" src="img/{{image}}"/>
+						</a>
+						<figcaption>{{text}}</figcaption>
+					</figure>
+				</div>
+				{{/each}}
+			</div>
+		</div>
+	</div>
 
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
-    <script src="/js/project.js"></script>
-    {{> facebook}}
-    <script src="/js/facebook.js"></script>
-    {{> googleAnalytics}}
+	<script src="/js/project.js"></script>
+	{{> facebook}}
+	<script src="/js/facebook.js"></script>
+	{{> googleAnalytics}}
 </body>
 </html>

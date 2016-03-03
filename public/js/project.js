@@ -95,4 +95,16 @@ function initializePage() {
   	$("#today").text(month + " " + date + ", " + year);
   	$("#greetingMessage").text(greeting);
   	console.log(today.getHours());
+
+  	$(".navbar-brand").click(function(){
+  		ga("send", "event", 'home w/ logo', 'click');
+  	});
+
+  	$("#home-link").click(function(){
+  		ga("send","event",'home w/ menu','click');
+  	});
+
+  	$('#tasks-link').click(fnction(){
+  		ga("send","event",'tasks','click');
+  	})
 }
