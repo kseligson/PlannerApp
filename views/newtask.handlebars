@@ -126,20 +126,30 @@
     $('#new-task-form').submit(function(e) {
         e.preventDefault();
         var rbool = false;
+        var repeat = 0;
         var name = $('#new-task-form #taskName').val();
         var date = $('#new-task-form #startDate').val();
         var time = $('#new-task-form #startTime').val();
         var color = $('#new-task-form #priority').val();
         var notes = $('#new-task-form #taskNotes').val();
-        //var repeat
+
         if ($('#new-task-form #taskRemind').is(":checked")) {
               // it is checked
               rbool=true;
         }
-        var id = name + date + time + color + notes;
 
+        if($('#new-task-form #repeatDaily').is(":checked")) {
+            repeat = 1;
+        }
+        else if($('#new-task-form #repeatWeekly').is(":checked")) {
+            repeat = 2;
+        }
+        else if($('#new-task-form #repeatCustom').is(":checked")) {
+            repeat = 3;
+        }
+        var seconds = new Date().getTime()
+        var id = name + date + time + color + notes + seconds;
 
-        console.log(rbool);
         var json = {
             'id': id,
             'name': name,
@@ -147,12 +157,11 @@
             'time': time,
             'color': color,
             'notes': notes,
-            'repeat': true,
+            'repeat': repeat,
             'remind': rbool,
         };
 
         $.post('tasks', json, function(){
-            console.log("asdsa");
             window.location.href = '/tasks';
         });
     });

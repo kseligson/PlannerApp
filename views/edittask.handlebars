@@ -47,12 +47,12 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" >
         <div class="page-header">
             <div class="page-title">Edit Task</div>
         </div>
 
-        <form role="form" id="new-task-form" style="color:#FFFFFF;"ls>
+        <form role="form" id="new-task-form" style="color:#FFFFFF;" data-id="{{id}}">
             <div class="form-group">
                 <label for="taskName">Name</label>
                 <input type="text" class="form-control" id="taskName" value="{{name}}">
@@ -88,7 +88,7 @@
                     </label>
                 </div>
             </div>
-            <div class="form-group col-xs-offset-2" id="customOptions">
+            <div class="form-group col-xs-offset-2" id="customOptions" data-option="{{repeat}}">
                 <div class="radio-inline">
                     <label>
                         <input type="radio" name="repeatOptions" id="repeatDaily" value="daily">Daily
@@ -106,9 +106,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="checkbox">
+                <div class="checkbox" >
                     <label>
-                        <input type="checkbox" id="taskRemind">Remind me
+                        <input type="checkbox" id="taskRemind" data-remind="{{remind}}">Remind me
                     </label>
                 </div>
             </div>
@@ -121,24 +121,87 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script >
-        $(document).ready(function(){
-            var color = $(this).closest('#priority').attr('data-color');
-            console.log("color=" +color);
+        // setting priority
+        var color = document.getElementById("priority").getAttribute("data-color");
 
-            if(color == '#F21414'){
+         if(color == '#F21414'){
                $('#priority option[value=#F21414]').attr('selected', 'selected');
-              }
-              else if(color == '#F4C7C3'){
+          }
+          else if(color == '#F4C7C3'){
                $('#priority option[value=#F4C7C3]').attr('selected', 'selected');
-              }
-              else if(color == '#FCE8B2'){
+          }
+          else if(color == '#FCE8B2'){
                $('#priority option[value=#FCE8B2]').attr('selected', 'selected');
-              }
-              else if(color == '#B7E1CD'){
+          }
+          else if(color == '#B7E1CD'){
                $('#priority option[value=#B7E1CD]').attr('selected', 'selected');
-              }
-        }); 
-    </script>
+          }
+
+        // setting notification checkbox
+        var repeat = document.getElementById("customOptions").getAttribute("data-option");
+        
+        if(repeat == 1) {
+           document.getElementById('repeatDaily').checked = true; 
+        }
+        else if (repeat == 2) {
+           document.getElementById('repeatWeekly').checked = true; 
+        }
+        else if (repeat == 3) {
+           document.getElementById('repeatCustom').checked = true; 
+        }
+
+        // pre set remind
+       var remind = document.getElementById("taskRemind").getAttribute("data-remind");
+       if(remind) {
+           document.getElementById('taskRemind').checked = true; 
+       }
+     
+        var id = document.getElementById("new-task-form").getAttribute("data-id");
+
+        // new submit, same as new task submit
+        $('#new-task-form').submit(function(e) {
+        e.preventDefault();
+        var rbool = false;
+        var repeat = 0;
+        var name = $('#new-task-form #taskName').val();
+        var date = $('#new-task-form #startDate').val();
+        var time = $('#new-task-form #startTime').val();
+        var color = $('#new-task-form #priority').val();
+        var notes = $('#new-task-form #taskNotes').val();
+        //var repeat
+        if ($('#new-task-form #taskRemind').is(":checked")) {
+              // it is checked
+              rbool=true;
+        }
+
+        if($('#new-task-form #repeatDaily').is(":checked")) {
+            repeat = 1;
+        }
+        else if($('#new-task-form #repeatWeekly').is(":checked")) {
+            repeat = 2;
+        }
+        else if($('#new-task-form #repeatCustom').is(":checked")) {
+            repeat = 3;
+        }
+ 
+        var json = {
+            'id': id,
+            'name': name,
+            'date': date,
+            'time': time,
+            'color': color,
+            'notes': notes,
+            'repeat': repeat,
+            'remind': rbool,
+        };
+
+            console.log(json);
+        $.post('tasks/edit', json, function(){
+            window.location.href = '/tasks';
+        });
+    });
+        
+        </script>
 
 
 </body>
