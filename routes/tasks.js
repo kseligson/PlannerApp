@@ -1,6 +1,6 @@
 
 var data = require('../data.json')
-var models = require('../models.js')
+//var models = require('../models.js')
 
 exports.view = function(req, res) {
 	//controller code goes here
@@ -67,7 +67,8 @@ exports.addTask = function(req, res) {
 }
 
 exports.deleteTask = function(req, res) {
-  var taskID = req.params.id;
+
+/*  var taskID = req.params.id;
 
   // find the project and remove it
   // YOU MUST send an OK response w/ res.send();
@@ -76,7 +77,7 @@ exports.deleteTask = function(req, res) {
   function afterQuery(err, projects) {
       if(err) console.log(err);
       res.send();
-    }
+    }*/
 }
 
 exports.nameChange = function(req, res) {

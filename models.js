@@ -1,6 +1,6 @@
-var Mongoose = require('mongoose');
+/*var Mongoose = require('mongoose');
 
-/** model_test
+ model_test
 var EventSchema = new Mongoose.Schema({
 	// fields are defined here
     "userID": String,
@@ -10,7 +10,7 @@ var EventSchema = new Mongoose.Schema({
 	"end": String,
 	"editable": Boolean
 });
-*/
+
 
 var EventSchema = new Mongoose.Schema({
 	// fields are defined here
@@ -37,3 +37,4 @@ var TaskSchema = new Mongoose.Schema({
 
 exports.Event = Mongoose.model('Event', EventSchema);
 exports.Task = Mongoose.model('Task', TaskSchema);
+*/

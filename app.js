@@ -7,7 +7,7 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var handlebars = require('express3-handlebars');
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 var twilio = require('twilio');
 
 var index = require('./routes/index');
@@ -32,7 +32,7 @@ var testing = require('./routes/testing');
 var local_database_name = 'PlannerApp';
 var local_database_uri  = 'mongodb://localhost/' + local_database_name;
 // var heroku_database_uri = 'mongodb://<dbuser>:<dbpassword>@ds013918.mlab.com:13918/heroku_2j43lmsj?authMode=scram-sha1' || local_database_uri;
-mongoose.connect(local_database_uri);
+//mongoose.connect(local_database_uri);
 
 
 /*
