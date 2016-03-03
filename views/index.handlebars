@@ -18,7 +18,11 @@
 </head>
 
 <body>
-	{{> navbar}}
+	{{#if taskFirst}}
+		{{> taskNav}}
+	{{else}}
+		{{> navbar}}
+	{{/if}}
     
 	<div class="container home-body">
 		<div class="greeting">

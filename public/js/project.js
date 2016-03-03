@@ -94,7 +94,6 @@ function initializePage() {
 
   	$("#today").text(month + " " + date + ", " + year);
   	$("#greetingMessage").text(greeting);
-  	console.log(today.getHours());
 
   	var amtevents = 0;
   	var amttasks = 0;
@@ -116,7 +115,7 @@ function initializePage() {
   		ga("send","event",'home w/ menu','click');
   	});
 
-  	$('#tasks-link').click(fnction(){
+  	$('#tasks-link').click(function(){
   		ga("send","event",'tasks','click');
   	});
 }

@@ -26,7 +26,6 @@ var editevent = require('./routes/editevent');
 var edittask = require('./routes/edittask');
 var tester = require('./routes/tester');
 var testing = require('./routes/testing');
-var taskfirst = require('./routes/taskfirst');
 // Example route
 // var user = require('./routes/user');
 
@@ -88,7 +87,7 @@ app.get('/editevent', editevent.view);
 app.get('/edittask', edittask.view);
 app.get('/tester', tester.view)
 app.get('/testing', testing.view)
-app.get('/taskfirst', taskfirst.view);
+app.get('/taskfirst', index.newNav);
 
 
 app.post('/events', events.addEvent);
@@ -97,7 +96,7 @@ app.post('/events/:id/delete', events.deleteEvent);
 app.post('/tasks', tasks.addTask);
 app.post('/tasks/:id/delete', tasks.deleteTask);
 app.post('/edittask/:id', edittask.edit);
-app.post('/tasks/:id/namechange', tasks.nameChange);
+//app.post('/tasks/:id/namechange', tasks.nameChange);
 app.post('/tasks/edit', tasks.editTask);
 // Example route
 // app.get('/users', user.list);
