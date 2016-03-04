@@ -1,25 +1,32 @@
 body {
 	background: url("../img/background.png") center center fixed repeat;
 	padding: 25px;
-	/*font-family: 'Alegreya Sans', sans-serif;*/
 	font-family: museo;
     src: url("../fonts/museosans-500.otf")  format("opentype");
 }
 
+@font-face {
+    font-family: museo;
+    src: url("../fonts/museosans-500.otf")  format("opentype");
+}
+
 /* HOME PAGE */
+
+/* home */
 #profile-picture {
 	width: 90px;
 	height: 90px;
 }
 
+/* home */
 .greeting {
 	color: white;
 	padding-bottom: 20px;
-	font-size: 20px;
 	text-align: center;
-	font-size: 50px;
+	font-size: 40px;
 }
 
+/* home */
 .day-summary {
 	color: white;
 	padding-top: 40px;
@@ -28,11 +35,12 @@ body {
 	font-size: 25px;
 }
 
+/* home */
 .page-link {
 	padding-top: 30px;
 }
 
-#date-display {
+/*#date-display {
 	padding-top: 20px;
 	color: white;
 	font-weight: bold;
@@ -45,21 +53,25 @@ body {
 
 #date {
 	font-size: 200px;
-}
+}*/
 
+/* home */
 #bottom-nav {
 	text-align: center;
 }
 
+/* home */
 #bottom-nav figure {
 	color: white;
 }
 
+/* home */
 #bottom-nav img {
 	width: 75px;
 	height: auto;
 }
 
+/* home */
 #bottom-nav figcaption {
 	padding-top: 5px;
 }
@@ -68,6 +80,7 @@ body {
 .calendar {
 	padding-top: 40px;
 }
+
 #cal-header {
 	text-align: center;
 	color: white;
@@ -167,10 +180,6 @@ a:hover {
 	text-align: left;
 }
 
-.add-label {
-	text-align: right;
-}
-
 .checkbox {
 	color: #FFF;
 }
@@ -184,12 +193,14 @@ a:hover {
     color: rgb(26,134,204) !important;
 }
 
+/* nav */
 .navbar
 {
     min-height:36px !important;
     background-color: #000;
 }
 
+/* login */
 .home-body {
 	padding-top: 40px;
 }
@@ -316,11 +327,6 @@ a:hover {
 	vertical-align: middle;
 }
 
-@font-face {
-    font-family: museo;
-    src: url("../fonts/museosans-500.otf")  format("opentype");
-}
-
 .logo-img {
 	height: 35px;
 	width: auto;
@@ -329,4 +335,9 @@ a:hover {
 .logo-lg {
 	width: 75vw;
 	height: auto;
+}
+
+.info {
+	width: 50px;
+	height: 50px;
 }
