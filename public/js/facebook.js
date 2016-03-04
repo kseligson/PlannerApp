@@ -32,6 +32,14 @@ window.fbAsyncInit = function() {
 
   FB.getLoginStatus(function(response) {
     console.log(window.location);
+
+    $('#logout').bind('click', function(response) {
+      console.log('User is logging out of Facebook');
+      FB.logout(function(response) {
+        // user is now logged out
+      });
+    })
+
     if (response.status === 'connected') {
       // the user is logged in and has authenticated your
       // app, and response.authResponse supplies

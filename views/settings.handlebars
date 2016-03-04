@@ -40,7 +40,7 @@
 					<a data-toggle="modal" data-target="#helpModal" href="#">Help</a>
 				</li>
 				<li class="liref">
-					<a id="logout" href="/login">Logout</a>
+					<a id="logout">Logout</a>
 				</li>
 			</ul>
 		</div>
@@ -98,13 +98,6 @@
 		    	 $(this).text(function(i, text){
 	          		return text === "Texting On" ? "Texting Off" : "Texting On";
 	      		})
-		    });
-		    $('#logout').click(function() {
-		    	console.log("Logout Clicked");
-		    	FB.logout(function(response){
-		    		//User is now logged out
-		    		console.log("logged out");
-		    	});
 		    });
 		});
 	</script>
