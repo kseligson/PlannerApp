@@ -1,7 +1,9 @@
 body {
 	background: url("../img/background.png") center center fixed repeat;
 	padding: 25px;
-	font-family: 'Alegreya Sans', sans-serif;
+	/*font-family: 'Alegreya Sans', sans-serif;*/
+	font-family: museo;
+    src: url("../fonts/museosans-500.otf")  format("opentype");
 }
 
 /* HOME PAGE */
@@ -322,4 +324,9 @@ a:hover {
 .logo-img {
 	height: 35px;
 	width: auto;
+}
+
+.logo-lg {
+	width: 75vw;
+	height: auto;
 }

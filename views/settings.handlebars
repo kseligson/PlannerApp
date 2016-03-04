@@ -75,7 +75,7 @@
     <script src="/js/facebook.js"></script>
 		<script>
 		$(document).ready(function(){
-
+			//Toggle notification menu
 		    $('.toggle-li').hide();
 		    var arrow = "img/collapse-arrow.png";
 		    $('#toggle-arrow').attr('src', arrow);
@@ -89,11 +89,15 @@
 				}
 				$('#toggle-arrow').attr('src', arrow);
 		    });
+		    
+		    //Toggle email on/off text
 		    $("#emailnotif").click(function(){
 		    	 $(this).text(function(i, text){
 	          		return text === "Email On" ? "Email Off" : "Email On";
 	      		})
 		    });
+
+		    //Toggle text on/off text
 		    $("#textnotif").click(function(){
 		    	 $(this).text(function(i, text){
 	          		return text === "Texting On" ? "Texting Off" : "Texting On";
