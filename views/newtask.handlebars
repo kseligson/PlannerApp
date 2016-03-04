@@ -45,10 +45,10 @@
                 <div class="form-group col-xs-3">
                     <label for="priority">Priority</label>
                     <select id="priority" name="Priority">
-                        <option value="#F21414">Urgent</option>
-                        <option value="#F76C41">High</option>
-                        <option value="#FCC31F">Medium</option>
-                        <option value="#1CA497">Low</option>
+                        <option value="#F21414" style="background:#F21414">Urgent</option>
+                        <option value="#F76C41" style="background:#F76C41">High</option>
+                        <option value="#FCC31F" style="background:#FCC31F">Medium</option>
+                        <option value="#1CA497" style="background:#1CA497">Low</option>
                     </select>
                 </div>
             </div>
@@ -138,6 +138,7 @@
 
         $.post('tasks', json, function(){
             window.location.href = '/tasks';
+
         });
     });
 

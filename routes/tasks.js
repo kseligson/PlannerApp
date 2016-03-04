@@ -41,6 +41,32 @@ exports.addTask = function(req, res) {
     "remind": form_data.remind
   });
 
+  if( form_data.repeat == 2) {
+    setTimeout(function() { 
+        var now = new Date(form_data.date);
+        now.setDate(now.getDate()+7);
+
+        date_obj = new Date(now);
+        options = {
+          weekday: "short",
+          year: "2-digit",
+          month: "numeric",
+          day: "numeric"
+        };
+        display_date = date_obj.toLocaleDateString('en-US', options);
+
+
+        data.tasks.push({        //add the employee
+          "name": form_data.name,
+          "date": display_date,
+          "time": form_data.time,
+          "color": form_data.color,
+          "notes": form_data.notes,
+          "repeat": form_data.repeat,
+          "remind": form_data.remind
+        });
+    }, 5000);
+  }
   res.redirect('/tasks');
 /*
 	// make a new Project and save it to the DB
