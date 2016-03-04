@@ -110,6 +110,7 @@ function initializePage() {
             url: '../data.son',
             dataType: 'jsonp',
             success: function(data){
+            amttasks = data.tasks.length;
              alert(data);
             }
           });
