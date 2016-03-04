@@ -318,3 +318,8 @@ a:hover {
     font-family: museo;
     src: url("../fonts/museosans-500.otf")  format("opentype");
 }
+
+.logo-img {
+	height: 35px;
+	width: auto;
+}
