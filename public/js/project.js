@@ -97,11 +97,22 @@ function initializePage() {
 
   	var amtevents = 0;
   	var amttasks = 0;
+    /*
   	$.getJSON( "../data.json", function() {
   		amttasks = data.tasks.length;
-  		console.log("ASDDDDDDDDDDDDDDDDD" +amttasks);
-  	});
 
+  	}.error(function(xhr) {
+                    alert(xhr)
+                })
+  	);*/
+
+    $.ajax({
+            url: '../data.son',
+            dataType: 'jsonp',
+            success: function(data){
+             alert(data);
+            }
+          });
 
   	$("#todayEvents").text(amtevents);
  
