@@ -58,6 +58,8 @@
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
     <script >
+
+
         $(document).ready(function(){
             $('.task-div').click(function(){
                 var taskID = $(this).closest('.task-div').attr('id');
@@ -68,6 +70,10 @@
                 $(notes).slideToggle("fast");
             });
 
+            if($('.task-div').attr('id') == null) {
+                console.log("ASDASDADAD");
+                $(this).hide();
+            }
             $(".task-notes").hide();
 
             $('.removebtn').click(function(){
@@ -86,23 +92,12 @@
             $('.editbtn').click(function() {
                 var taskID = $(this).closest('.task-div').attr('id');
                 var idNumber = taskID.substr('task'.length);
-                console.log(taskID);
-                console.log(idNumber);
 
                 $.post('/edittask/'+idNumber, {id : idNumber} , function(){
                         window.location.href = '/edittask';
                 });
             });
 
-            function changeFunction (value){
-                var taskID = $(this).closest('.task-div').attr('id');
-
-                var idNumber = taskID.substr('task'.length);
-
-                $.post('/tasks'+idNumber+'/namechange',{id : idNumber, name: value}, function(){
-
-                });
-            }
         });
     </script>
 

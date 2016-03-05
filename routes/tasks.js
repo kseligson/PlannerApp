@@ -38,13 +38,39 @@ exports.addTask = function(req, res) {
     "color": form_data.color,
     "notes": form_data.notes,
     "repeat": form_data.repeat,
-    "remind": form_data.remind
+    "remind": form_data.remind,
   });
 
   if( form_data.repeat == 2) {
     setTimeout(function() { 
         var now = new Date(form_data.date);
         now.setDate(now.getDate()+7);
+
+        date_obj = new Date(now);
+        options = {
+          weekday: "short",
+          year: "2-digit",
+          month: "numeric",
+          day: "numeric"
+        };
+        display_date = date_obj.toLocaleDateString('en-US', options);
+
+
+        data.tasks.push({        //add the employee
+          "name": form_data.name,
+          "date": display_date,
+          "time": form_data.time,
+          "color": form_data.color,
+          "notes": form_data.notes,
+          "repeat": form_data.repeat,
+          "remind": form_data.remind
+        });
+    }, 5000);
+  }
+  else if( form_data.repeat == 1) {
+    setTimeout(function() { 
+        var now = new Date(form_data.date);
+        now.setDate(now.getDate()+1);
 
         date_obj = new Date(now);
         options = {
@@ -107,7 +133,7 @@ exports.deleteTask = function(req, res) {
 }
 
 exports.editTask = function(req, res) {
-  var form_data = req.body;
+ /* var form_data = req.body;
   for (var i=0; i<data.tasks.length; i++) {
     if (data.tasks[i].Id == form_data.id) {
       data.tasks[i].name = form_data.name;
@@ -119,6 +145,37 @@ exports.editTask = function(req, res) {
       data.tasks[i].remind = form_data.remind; 
     }
   }
+  data.tasks.push();*/
 
-  res.redirect('/tasks');
+  var form_data = req.body;
+
+
+
+  for (var i=0; i<data.tasks.length; i++) {
+
+    if (data.tasks[i].id == form_data.id) {
+      delete data.tasks[i];
+    }
+  }
+
+  var date_obj = new Date(form_data.date);
+  var options = {
+    weekday: "short",
+    year: "2-digit",
+    month: "numeric",
+    day: "numeric"
+  };
+  var display_date = date_obj.toLocaleDateString('en-US', options);
+
+  //var newData = JSON.parse(data);  //parse the JSON
+  data.tasks.push({        //add the employee
+    "name": form_data.name,
+    "date": display_date,
+    "time": form_data.time,
+    "color": form_data.color,
+    "notes": form_data.notes,
+    "repeat": form_data.repeat,
+    "remind": form_data.remind
+  });
+
 }
