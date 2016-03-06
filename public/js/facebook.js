@@ -5,8 +5,6 @@ function checkLoginState() {
 }
 
 function statusChangeCallback(response) {
-  console.log('Facebook login status changed.');
-  console.log(response);
   // The response object is returned with a status field that lets the
   // app know the current login status of the person.
   // Full docs on the response object can be found in the documentation
@@ -22,8 +20,6 @@ function statusChangeCallback(response) {
 }
 
 window.fbAsyncInit = function() {
-  console.log('Checking login state.');
-
   FB.init({
     appId      : '979702358778307',
     xfbml      : true,
@@ -31,16 +27,7 @@ window.fbAsyncInit = function() {
   });
 
   FB.getLoginStatus(function(response) {
-    console.log(window.location);
-
-    $('#logout').bind('click', function(response) {
-      console.log('User is logging out of Facebook');
-      FB.logout(function(response) {
-        // user is now logged out
-        window.location.href="/login";
-      });
-    })
-
+    
     if (response.status === 'connected') {
       // the user is logged in and has authenticated your
       // app, and response.authResponse supplies

@@ -40,7 +40,7 @@
 					<a data-toggle="modal" data-target="#helpModal" href="#">Help</a>
 				</li>
 				<li class="liref">
-					<a id="logout">Logout</a>
+					<a id="logout" href="#" onclick="window.location.reload">Logout</a>
 				</li>
 			</ul>
 		</div>
@@ -85,6 +85,14 @@
 	          		return text === "Texting On" ? "Texting Off" : "Texting On";
 	      		})
 		    });
+		    //Logout of app
+		    $('#logout').click('click', function(response) {
+		      console.log('User is logging out of Facebook');
+		      FB.logout(function(response) {
+		        // user is now logged out
+		        window.location = "/";
+		      });
+		    })
 		});
 	</script>
     {{> googleAnalytics}}
