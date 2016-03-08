@@ -17,6 +17,20 @@ exports.view = function(req, res) {
 };
 
 exports.addEvent = function(req, res) {
+  var form = req.body;
+
+  var newEvent = {
+    "name": form.name,
+    "startDate": form.startDate,
+    "endDate": form.endDate,
+    "startTime": form.startTime,
+    "endTime": form.endTime,
+    "color": form.eventColor,
+    "notes": form.notes
+  };
+
+  console.log(newEvent);
+  res.redirect('/events');
 
 /*	var form_data = req.body;
 

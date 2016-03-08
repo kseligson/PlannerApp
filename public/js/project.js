@@ -115,9 +115,9 @@ function initializePage() {
             }
           });
 
-  	$("#todayEvents").text(amtevents);
+  	//$("#todayEvents").text(amtevents);
  
-  	$("#todayTasks").text(amttasks);
+  	//$("#todayTasks").text(amttasks);
 
   	$(".navbar-brand").click(function(){
   		ga("send", "event", 'home w/ logo', 'click');

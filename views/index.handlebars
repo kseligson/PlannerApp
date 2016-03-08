@@ -31,20 +31,42 @@
 			</figure>
 		</div>
 
-		<div class="day-summary">Today is <span id="today"></span>.<br>You have <span id="todayEvents">____</span> events and <span id="todayTasks">____</span> unfinished tasks today.</div>
+		<div class="day-summary">Today is <span id="today"></span>.<br>You have <span id="todayEvents">{{eventCount}}</span> events and <span id="todayTasks">{{taskCount}}</span> unfinished tasks today.</div>
 
 		<div id="bottom-nav" style="text-align: center">
 			<div class="row">
-				{{#each nav-link}}	
+				<!--<div class="col-xs-6">
+					<figure class="page-link">
+						<a href="/calendar">
+							<img class="img-circle" src="img/cal-icon.png"/>
+						</a>
+						<figcaption>Calendar</figcaption>
+					</figure>
+				</div>-->
 				<div class="col-xs-6">
 					<figure class="page-link">
-						<a href="/{{link}}">
-							<img class="img-circle" src="img/{{image}}"/>
+						<a href="/events">
+							<img class="img-circle" src="img/event-icon.png"/>
 						</a>
-						<figcaption>{{text}}</figcaption>
+						<figcaption>Events</figcaption>
 					</figure>
 				</div>
-				{{/each}}
+				<div class="col-xs-6">
+					<figure class="page-link">
+						<a href="/tasks">
+							<img class="img-circle" src="img/task-icon.png"/>
+						</a>
+						<figcaption>Tasks</figcaption>
+					</figure>
+				</div>
+				<div class="col-xs-12">
+					<figure class="page-link">
+						<a href="/settings">
+							<img class="img-circle" src="img/settings-icon.png"/>
+						</a>
+						<figcaption>Settings</figcaption>
+					</figure>
+				</div>
 			</div>
 		</div>
 	</div>

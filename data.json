@@ -1,26 +1,4 @@
 {
-	"nav-link": [
-		{
-			"image": "cal-icon.png",
-			"text": "Calendar",
-			"link": "calendar"
-		},
-		{
-			"image": "event-icon.png",
-			"text": "Events",
-			"link": "events"
-		},
-		{
-			"image": "task-icon.png",
-			"text": "Tasks",
-			"link": "tasks"
-		},
-		{
-			"image": "settings-icon.png",
-			"text": "Settings",
-			"link": "settings"
-		}
-	],
 	"settings-list": [
 		{
 			"caption": "Account Settings",
@@ -41,6 +19,14 @@
 			"color": "#FCC31F",
 			"repeat": "1",
 			"remind": "true"
+		}
+	],
+	"events": [
+		{
+			"id": "test"
+		},
+		{
+			"id": "test multiple events for count"
 		}
 	]
 }
