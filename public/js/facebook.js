@@ -37,6 +37,7 @@ window.fbAsyncInit = function() {
       console.log('User is logging out of Facebook');
       FB.logout(function(response) {
         // user is now logged out
+        window.location.href="/login";
       });
     })
 

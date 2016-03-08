@@ -18,19 +18,28 @@
 </head>
 
 <body>
-	{{> navbar}}
-
 	<div class="container home-body">
-        <div align="center">
-            <span class="greeting" id="greetingMessage"></span><span>!</span>
+        <figure align="center">
+            <img class="logo-lg" src="img/logo.png"/>
+        </figure>
+        <br><br>
+        <div class="greeting">
+            <span id="greetingMessage"></span>!
         </div>
-        <div class="day-summary"><h3>Please Log In</h3></div>
+        <div class="day-summary">Please Log In</div>
 
         <div align="center">
             <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
             </fb:login-button>
         </div>
+
+        <br><br>
+        <figure align="center">
+            <img data-toggle="modal" data-target="#helpModal" class="info" src="img/info-icon.png"/>
+        </figure>
     </div>
+
+    {{> helpModal}}
 
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>

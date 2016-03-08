@@ -150,14 +150,14 @@ exports.editTask = function(req, res) {
   var form_data = req.body;
 
 
-
+/*
   for (var i=0; i<data.tasks.length; i++) {
 
     if (data.tasks[i].id == form_data.id) {
       delete data.tasks[i];
     }
   }
-
+*/
   var date_obj = new Date(form_data.date);
   var options = {
     weekday: "short",

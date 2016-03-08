@@ -1,16 +1,13 @@
 body {
-	background: url("../img/background.png") center center fixed repeat;
+	background: url("http://www.highschoolmathandchess.com/wp-content/uploads/2011/10/PaperBG.jpeg") center center fixed repeat;
 	padding: 25px;
 	font-family: museo;
-<<<<<<< HEAD
-=======
     src: url("../fonts/museosans-500.otf")  format("opentype");
 }
 
 @font-face {
     font-family: museo;
     src: url("../fonts/museosans-500.otf")  format("opentype");
->>>>>>> 370c6565994b617f1b454c8452e5e9e4b8faddd0
 }
 
 /* HOME PAGE */
@@ -23,7 +20,7 @@ body {
 
 /* home */
 .greeting {
-	color: white;
+	color: black;
 	padding-bottom: 20px;
 	text-align: center;
 	font-size: 40px;
@@ -31,7 +28,7 @@ body {
 
 /* home */
 .day-summary {
-	color: white;
+	color: black;
 	padding-top: 40px;
 	padding-bottom: 10px;
 	text-align: center;
@@ -65,7 +62,7 @@ body {
 
 /* home */
 #bottom-nav figure {
-	color: white;
+	color: black;
 }
 
 /* home */
@@ -86,7 +83,7 @@ body {
 
 #cal-header {
 	text-align: center;
-	color: white;
+	color: black;
 	position: fixed;
 }
 
@@ -145,7 +142,7 @@ a:hover {
  
 .settings li a {
   text-decoration: none;
-  color: #FFFFFF;
+  color: #000000;
   width: 200px;
 }
 
@@ -169,7 +166,7 @@ a:hover {
     border: none;
     cursor:pointer;
     overflow: hidden;
-    color: #FFFFFF;
+    color: #000000;
 }
 
 /* TASKS */
