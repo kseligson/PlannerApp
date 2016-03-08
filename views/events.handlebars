@@ -32,14 +32,183 @@
 		<div class="page-header">
 			<div class="row">
 				<div class="col-xs-7 page-title">Events</div>
-				<div class="col-xs-5 add-label"><a href="/newevent"><img class="img-responsive img-circle" id="add-btn" src="img/add-icon.png"/></a></div>
+				<div class="col-xs-5 add-label"><a data-toggle="modal" data-target="#newEventModal" href="#"><img class="img-responsive img-circle" id="add-btn" src="img/add-icon.png"/></a></div>
 			</div>
 		</div>
+
+        <div class="event-header" style="color:white">
+            <img class="date-nav" id="left-nav" src="img/left-arrow.png"/>   <span id="event-date"></span>   <img id="right-nav" class="date-nav" src="img/right-arrow.png"/><button type="button" class="btn" id="todayBtn" style="float:right">Today</button>
+        </div>
+
+        <div class="event-display" align="center">
+            <table style="width:100%" id="event-table">
+                <tr id="7am">
+                    <td id="time-col">7am</td>
+                    <td id="event-col"></td>
+                </tr>
+                <tr id="8am">
+                    <td id="time-col">8am</td>
+                    <td id="event-col"></td>
+                </tr>
+                <tr id="9am">
+                    <td id="time-col">9am</td>
+                    <td id="event-col"></td>
+                </tr>
+                <tr id="10am">
+                    <td id="time-col">10am</td>
+                    <td id="event-col"></td>
+                </tr>
+                <tr id="11am">
+                    <td id="time-col">11am</td>
+                    <td id="event-col"></td>
+                </tr>
+                <tr id="12pm">
+                    <td id="time-col">12pm</td>
+                    <td id="event-col"></td>
+                </tr>
+                <tr id="1pm">
+                    <td id="time-col">1pm</td>
+                    <td id="event-col"></td>
+                </tr>
+                <tr id="2pm">
+                    <td id="time-col">2pm</td>
+                    <td id="event-col"></td>
+                </tr>
+                <tr id="3pm">
+                    <td id="time-col">3pm</td>
+                    <td id="event-col"></td>
+                </tr>
+                <tr id="4pm">
+                    <td id="time-col">4pm</td>
+                    <td id="event-col"></td>
+                </tr>
+                <tr id="5pm">
+                    <td id="time-col">5pm</td>
+                    <td id="event-col"></td>
+                </tr>
+                <tr id="6pm">
+                    <td id="time-col">6pm</td>
+                    <td id="event-col"></td>
+                </tr>
+                <tr id="7pm">
+                    <td id="time-col">7pm</td>
+                    <td id="event-col"></td>
+                </tr>
+                <tr id="8pm">
+                    <td id="time-col">8pm</td>
+                    <td id="event-col"></td>
+                </tr>
+                <tr id="9pm">
+                    <td id="time-col">9pm</td>
+                    <td id="event-col"></td>
+                </tr>
+                <tr id="10pm">
+                    <td id="time-col">10pm</td>
+                    <td id="event-col"></td>
+                </tr>
+            </table>
 
         <!-- <div id="events" class="fc" style="color: #1899d6"></div> for temp -->
 	</div>
 
+    <!-- Modal used to create new events -->
+    <div class="modal fade" id="newEventModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">New Event</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" id="new-event-form">
+                        <div class="form-group">
+                            <label for="eventName">Name</label>
+                            <input type="text" class="form-control" id="eventName">
+                        </div>
+                        <div class="form-group">
+                            <label for="eventLocation">Location</label>
+                            <input type="text" class="form-control" id="eventLocation">
+                        <div class="row">
+                            <div class="form-group col-xs-6">
+                                <label for="startDate">Start Date</label>
+                                <input type="date" class="form-control" id="startDate">
+                            </div>
+                            <div class="form-group col-xs-6">
+                                <label for="startTime">Start Time</label>
+                                <input type="time" class="form-control" id="startTime">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-6">
+                                <label for="endDate">End Date</label>
+                                <input type="date" class="form-control" id="endDate">
+                            </div>
+                            <div class="form-group col-xs-6">
+                                <label for="endTime">End Time</label>
+                                <input type="time" class="form-control" id="endTime">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-3">
+                                <label for="eventColor">Color</label>
+                                <select id="eventColor" name="Color">
+                                    <option value="#2B547E">Blue</option>
+                                    <option value="#3EA055">Green</option> 
+                                    <option value="#E56717">Orange</option>
+                                    <option value="#4E387E">Purple</option>
+                                    <option value="#990012">Red</option>
+                                    <option value="#FFA62F">Yellow</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="eventNotes">Notes</label>
+                            <textarea class="form-control" rows="3" id="eventNotes"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">Repeat Event
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-offset-2" id="customOptions">
+                            <div class="radio-inline">
+                                <label>
+                                    <input type="radio" name="repeatOptions" id="repeatDaily" value="daily">Daily
+                                </label>
+                            </div>
+                            <div class="radio-inline">
+                                <label>
+                                    <input type="radio" name="repeatOptions" id="repeatWeekly" value="weekly">Weekly
+                                </label>
+                            </div>
+                            <div class="radio-inline">
+                                <label>
+                                    <input type="radio" name="repeatOptions" id="repeatCustom" value="custom">Custom
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">Remind me
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="submitBtnEvents">Save</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
 <!-- temporary until fullcalendar/ajax implemented -->
+<!--
         <div class="container" id="events-container">
         {{#each events}}
         <div class="event-div" id="event{{id}}" style="color:{{taskColor}}; 
@@ -63,16 +232,17 @@
             <div class="event-notes" id="taskNotes{{id}}">{{taskNotes}}</div>
         </div>
         {{/each}}
-    </div>
+    </div>-->
 
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
+    <script src="/js/events.js"></script>
 <!--    <script src="/fullcalendar/lib/jquery.min.js"></script>
     <script src="/fullcalendar/lib/moment.min.js"></script>
     <script src="/fullcalendar/fullcalendar.js"></script>
 -->
     <!-- also added -->
-    <script>
+    <!--<script>
         $(document).ready(function(){
             $('.event-div').click(function(){
                 var eventID = $(this).closest('.event-div').attr('id');
@@ -103,7 +273,7 @@
                 });
             });
         });
-    </script>
+    </script>-->
     
     {{> facebook}}
     <script src="/js/facebook.js"></script>

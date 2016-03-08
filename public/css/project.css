@@ -341,3 +341,30 @@ a:hover {
 	width: 50px;
 	height: 50px;
 }
+
+.date-nav {
+	width: 15px;
+	height: auto;
+	vertical-align: middle;
+	padding-bottom: 15px;
+}
+
+#event-date {
+	font-size: 30px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#time-col {
+	color: white;
+	width: 10%;
+	height: 50px;
+	border: 1px solid white;
+	text-align: center;
+	vertical-align: top;
+}
+
+#event-table tr{
+	border: 1px solid white;
+	margin-top: 20px;
+}
