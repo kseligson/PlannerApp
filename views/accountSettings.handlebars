@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/css/bootstrap-theme.min.css" rel="stylesheet">
-	<link href="/css/project.css" rel="stylesheet">
+	<link id ="mystyle" href="/css/project.css" rel="stylesheet">
 	<!-- this is a comment in HTML -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -22,12 +22,6 @@
 	{{> navbar}}
 
     <div class="container-acc">
-        <div class="panel panel-primary">
-            <div class="panel-heading">Profile</div>
-            <div class="panel-body">Username: <span id="name"></span></div>
-            <div class="panel-body"><input type="username" class="form-control" id="username" placeholder="Change Username"></div>
-            <div class="panel-body"><input type="password" class="form-control" id="pwd" placeholder="Change Password       ***********"></div>
-        </div>
 
         <div class="panel panel-primary">
             <div class="panel-heading">Notification Devices</div>
@@ -36,10 +30,59 @@
             <div class="panel-body">Email: peopleplanner@gmail.com</div>
             <div class="panel-body"><input type="phone" class="form-control" id="Email" placeholder="Change Email"></div>
         </div>
+
+
+
+        <div class= "panel panel-primary">
+            <div class="panel-heading">Background URL</div>
+            <div class="panel-body"><input type="text" class="form-control" id="background" placeholder="https://www.example.com">         
+                    <input type="submit" id="bgsubmit">
+            </div>
+            <div class="panel-heading">Change Theme</div>
+            <div class="panel-body"><input type="submit" id="themesubmit"></div>
+        </div>
+
+
 	</div>
 
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
+
+    <script> 
+    var themechanged = false;
+     $(document).ready(function(){
+            $('#bgsubmit').click(function(){
+                var bg = $('#background').val();
+                changeBG_URL(bg);
+                });
+
+            $('#themesubmit').click(function() {
+                changeCSS('/css/project-light.css');
+            });
+
+        });
+
+    function changeBG_URL(url){
+        if(url != null) {
+            var body= document.getElementsByTagName('body')[0];
+            body.style.backgroundImage='url('+ url +') ';
+        }
+    }
+          
+
+    if(themechanged) {
+        changeCSS('/css/project-light.css');
+    }
+
+    function changeCSS(cssFile) {
+        var themechanged= true;
+        var link = document.getElementById("mystyle");
+        link.setAttribute('href', cssFile);
+
+
+    }
+    </script>
+
     {{> facebook}}
     <script src="/js/facebook.js"></script>
     {{> googleAnalytics}}
