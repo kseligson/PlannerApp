@@ -9,7 +9,7 @@ exports.view = function(req, res){
 	var eventAmt = data.events.length;
 
 	res.render('index', {
-		taskCount: taskAmt,
-		eventCount: eventAmt
+		//taskCount: taskAmt,
+		//eventCount: eventAmt
 	});
 };

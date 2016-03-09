@@ -180,9 +180,9 @@ a:hover {
 	text-align: left;
 }
 
-.checkbox {
+/*.checkbox {
 	color: #FFF;
-}
+}*/
 
 /* Navigation */
 .navbar-nav > li > a, .navbar-brand
@@ -367,4 +367,9 @@ a:hover {
 #event-table tr{
 	border: 1px solid white;
 	margin-top: 20px;
+}
+
+#eventBtn {
+	width: 100% !important;
+	margin-top: 5px;
 }

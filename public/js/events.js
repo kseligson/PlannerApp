@@ -1,10 +1,5 @@
 'use strict';
 
-// Call this function when the page loads (the "ready" event)
-$(document).ready(function() {
-	initializePage();
-})
-
 /* Declaring important variables */
 var day = new Date();
 var today = new Date();
@@ -12,32 +7,60 @@ var todayEvents = 0;
 var data = {
   events: [
     {
-      name: "Test Event",
-      startTime: "21:00",
-      startDate: "2016-03-07",
-      eventColor: "#4E387E",
-      location: "UCSD"
-    },
-    {
-      name: "Second test",
-      startTime: "21:00",
-      startDate: "2016-03-07",
-      location: "Disneyland",
-      eventColor: "#2B547E"
-    },
-    {
-      name: "7am Test",
-      startTime: "07:00",
-      startDate: "2016-03-07",
+      name: "COGS 120 Studio",
+      startTime: "11:00",
+      startDate: "2016-03-11",
       eventColor: "#990012",
-      location: "H&SS 1330"
+      location: "H&SS 1330",
+      status: "Saved"
     },
     {
-      name: "7am Test 2",
-      startTime: "07:00",
-      startDate: "2016-03-06",
+      name: "COGS 174 Lecture",
+      startTime: "09:00",
+      startDate: "2016-03-11",
+      location: "CSB 001",
+      eventColor: "#2B547E",
+      status: "Saved"
+    },
+    {
+      name: "COGS 102B Lecture",
+      startTime: "14:00",
+      startDate: "2016-03-11",
+      eventColor: "#4E387E",
+      location: "WLH 2005",
+      status: "Saved"
+    },
+    {
+      name: "COGS 101B Lecture",
+      startTime: "16:00",
+      startDate: "2016-03-11",
       eventColor: "#3EA055",
-      location: "Tamarack"
+      location: "WLH 2001",
+      status: "Saved"
+    },
+    {
+      name: "COGS 120 Lab",
+      startTime: "11:00",
+      startDate: "2016-03-10",
+      eventColor: "#990012",
+      location: "CICC 101",
+      status: "Saved"
+    },
+    {
+      name: "COGS 120 Group Meeting",
+      startTime: "16:00",
+      startDate: "2016-03-10",
+      eventColor: "#990012",
+      location: "PC Study Room 3",
+      status: "Saved"
+    },
+    {
+      name: "FOOSH Exec Meeting",
+      startTime: "15:00",
+      startDate: "03-10-2016",
+      eventColor: "#FFA62F",
+      location: "Ann's Office",
+      status: "Saved"
     }
   ],
   sevenAM: [],
@@ -59,19 +82,23 @@ var data = {
   elevenPM: []
 };
 
+// Call this function when the page loads (the "ready" event)
+$(document).ready(function() {
+	initializePage();
+})
+
 /*
  * Function that is called when the document is ready.
  */
 function initializePage() {
   updateDate(day);
 
+  //$('#deleteOpt').click(deleteEvent);
   $('#left-nav').click(decreaseDay);
   $('#right-nav').click(increaseDay);
   $('#todayBtn').click(setToday);
   $('#submitBtnEvents').click(addEvent);
-  $('#event-col').click(editEvent);
-
-  showEvents(today);
+  $('#add-btn').click(resetModal);
 }
 
 function decreaseDay(e) {
@@ -127,13 +154,16 @@ function addEvent(e) {
 
 function showEvents(date) {
   clearConflicts();
+  getTodayEvents();
 
   //Loop through all events to find time conflicts
   
   for(var i = 0; i < data.events.length; ++i) {
     //Find events that start on the currently selected day
     if((data.events[i].startDate.substring(0,4) == date.getFullYear()) && (data.events[i].startDate.substring(5,7) == (date.getMonth() + 1)) && (data.events[i].startDate.substring(8,10) == date.getDate())) {
-      fillConflictsByStart(i);
+      if(data.events[i].status != "Deleted") {
+        fillConflictsByStart(i);
+      }
     }
 
     //Find events that end on the currently selected day
@@ -168,7 +198,7 @@ function showEvents(date) {
   if(data.sevenAM.length != 0) {
     for(var k = 0; k < data.sevenAM.length; ++k) {
       var index = data.sevenAM[k].id;
-      sevenAMstring = sevenAMstring + "<td colspan='" + columns/data.sevenAM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<br>" + data.events[index].location + "</td>"
+      sevenAMstring = sevenAMstring + "<td colspan='" + columns/data.sevenAM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
     }
   }
   else sevenAMstring = sevenAMstring + "<td colspan='" + columns + "'></td>";
@@ -177,7 +207,7 @@ function showEvents(date) {
   if(data.eightAM.length != 0) {
     for(var k = 0; k < data.eightAM.length; ++k) {
       var index = data.eightAM[k].id;
-      eightAMstring = eightAMstring + "<td colspan='" + columns/data.eightAM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<br>" + data.events[index].location + "</td>"
+      eightAMstring = eightAMstring + "<td colspan='" + columns/data.eightAM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
     }
   }
   else eightAMstring = eightAMstring + "<td colspan='" + columns + "'></td>";
@@ -186,7 +216,7 @@ function showEvents(date) {
   if(data.nineAM.length != 0) {
     for(var k = 0; k < data.nineAM.length; ++k) {
       var index = data.nineAM[k].id;
-      nineAMstring = nineAMstring + "<td colspan='" + columns/data.nineAMstring.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<br>" + data.events[index].location + "</td>"
+      nineAMstring = nineAMstring + "<td colspan='" + columns/data.nineAM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
     }
   }
   else nineAMstring = nineAMstring + "<td colspan='" + columns + "'></td>";
@@ -195,7 +225,7 @@ function showEvents(date) {
   if(data.tenAM.length != 0) {
     for(var k = 0; k < data.tenAM.length; ++k) {
       var index = data.tenAM[k].id;
-      tenAMstring = tenAMstring + "<td colspan='" + columns/data.tenAM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<br>" + data.events[index].location + "</td>"
+      tenAMstring = tenAMstring + "<td colspan='" + columns/data.tenAM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
     }
   }
   else tenAMstring = tenAMstring + "<td colspan='" + columns + "'></td>";
@@ -204,7 +234,7 @@ function showEvents(date) {
   if(data.elevenAM.length != 0) {
     for(var k = 0; k < data.elevenAM.length; ++k) {
       var index = data.elevenAM[k].id;
-      elevenAMstring = elevenAMstring + "<td colspan='" + columns/data.elevenAM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<br>" + data.events[index].location + "</td>"
+      elevenAMstring = elevenAMstring + "<td colspan='" + columns/data.elevenAM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
     }
   }
   else elevenAMstring = elevenAMstring + "<td colspan='" + columns + "'></td>";
@@ -213,7 +243,7 @@ function showEvents(date) {
   if(data.twelvePM.length != 0) {
     for(var k = 0; k < data.twelvePM.length; ++k) {
       var index = data.twelvePM[k].id;
-      twelvePMstring = twelvePMstring + "<td colspan='" + columns/data.twelvePM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<br>" + data.events[index].location + "</td>"
+      twelvePMstring = twelvePMstring + "<td colspan='" + columns/data.twelvePM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
     }
   }
   else twelvePMstring = twelvePMstring + "<td colspan='" + columns + "'></td>";
@@ -222,7 +252,7 @@ function showEvents(date) {
   if(data.onePM.length != 0) {
     for(var k = 0; k < data.onePM.length; ++k) {
       var index = data.onePM[k].id;
-      onePMstring = onePMstring + "<td colspan='" + columns/data.onePM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<br>" + data.events[index].location + "</td>"
+      onePMstring = onePMstring + "<td colspan='" + columns/data.onePM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
     }
   }
   else onePMstring = onePMstring + "<td colspan='" + columns + "'></td>";
@@ -231,7 +261,7 @@ function showEvents(date) {
   if(data.twoPM.length != 0) {
     for(var k = 0; k < data.twoPM.length; ++k) {
       var index = data.twoPM[k].id;
-      twoPMstring = twoPMstring + "<td colspan='" + columns/data.twoPM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<br>" + data.events[index].location + "</td>"
+      twoPMstring = twoPMstring + "<td colspan='" + columns/data.twoPM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
     }
   }
   else twoPMstring = twoPMstring + "<td colspan='" + columns + "'></td>";
@@ -240,7 +270,7 @@ function showEvents(date) {
   if(data.threePM.length != 0) {
     for(var k = 0; k < data.threePM.length; ++k) {
       var index = data.threePM[k].id;
-      threePMstring = threePMstring + "<td colspan='" + columns/data.threePM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<br>" + data.events[index].location + "</td>"
+      threePMstring = threePMstring + "<td colspan='" + columns/data.threePM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
     }
   }
   else threePMstring = threePMstring + "<td colspan='" + columns + "'></td>";
@@ -249,7 +279,7 @@ function showEvents(date) {
   if(data.fourPM.length != 0) {
     for(var k = 0; k < data.fourPM.length; ++k) {
       var index = data.fourPM[k].id;
-      fourPMstring = fourPMstring + "<td colspan='" + columns/data.fourPM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<br>" + data.events[index].location + "</td>"
+      fourPMstring = fourPMstring + "<td colspan='" + columns/data.fourPM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
     }
   }
   else fourPMstring = fourPMstring + "<td colspan='" + columns + "'></td>";
@@ -258,7 +288,7 @@ function showEvents(date) {
   if(data.fivePM.length != 0) {
     for(var k = 0; k < data.fivePM.length; ++k) {
       var index = data.fivePM[k].id;
-      fivePMstring = fivePMstring + "<td colspan='" + columns/data.fivePM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<br>" + data.events[index].location + "</td>"
+      fivePMstring = fivePMstring + "<td colspan='" + columns/data.fivePM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
     }
   }
   else fivePMstring = fivePMstring + "<td colspan='" + columns + "'></td>";
@@ -267,7 +297,7 @@ function showEvents(date) {
   if(data.sixPM.length != 0) {
     for(var k = 0; k < data.sixPM.length; ++k) {
       var index = data.sixPM[k].id;
-      sixPMstring = sixPMstring + "<td colspan='" + columns/data.sixPM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<br>" + data.events[index].location + "</td>"
+      sixPMstring = sixPMstring + "<td colspan='" + columns/data.sixPM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
     }
   }
   else sixPMstring = sixPMstring + "<td colspan='" + columns + "'></td>";
@@ -276,7 +306,7 @@ function showEvents(date) {
   if(data.sevenPM.length != 0) {
     for(var k = 0; k < data.sevenPM.length; ++k) {
       var index = data.sevenPM[k].id;
-      sevenPMstring = sevenPMstring + "<td colspan='" + columns/data.sevenPMstring.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<br>" + data.events[index].location + "</td>"
+      sevenPMstring = sevenPMstring + "<td colspan='" + columns/data.sevenPMstring.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
     }
   }
   else sevenPMstring = sevenPMstring + "<td colspan='" + columns + "'></td>";
@@ -285,7 +315,7 @@ function showEvents(date) {
   if(data.eightPM.length != 0) {
     for(var k = 0; k < data.eightPM.length; ++k) {
       var index = data.eightPM[k].id;
-      eightPMstring = eightPMstring + "<td colspan='" + columns/data.eightPM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<br>" + data.events[index].location + "</td>"
+      eightPMstring = eightPMstring + "<td colspan='" + columns/data.eightPM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
     }
   }
   else eightPMstring = eightPMstring + "<td colspan='" + columns + "'></td>";
@@ -294,7 +324,7 @@ function showEvents(date) {
   if(data.ninePM.length != 0) {
     for(var k = 0; k < data.ninePM.length; ++k) {
       var index = data.ninePM[k].id;
-      ninePMstring = ninePMstring + "<td colspan='" + columns/data.ninePM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<br>" + data.events[index].location + "</td>"
+      ninePMstring = ninePMstring + "<td colspan='" + columns/data.ninePM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
     }
   }
   else ninePMstring = ninePMstring + "<td colspan='" + columns + "'></td>";
@@ -303,7 +333,7 @@ function showEvents(date) {
   if(data.tenPM.length != 0) {
     for(var k = 0; k < data.tenPM.length; ++k) {
       var index = data.tenPM[k].id;
-      tenPMstring = tenPMstring + "<td colspan='" + columns/data.tenPM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<br>" + data.events[index].location + "</td>"
+      tenPMstring = tenPMstring + "<td colspan='" + columns/data.tenPM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
     }
   }
   else tenPMstring = tenPMstring + "<td colspan='" + columns + "'></td>";
@@ -312,7 +342,7 @@ function showEvents(date) {
   if(data.elevenPM.length != 0) {
     for(var k = 0; k < data.elevenPM.length; ++k) {
       var index = data.elevenPM[k].id;
-      elevenPMstring = elevenPMstring + "<td colspan='" + columns/data.elevenPM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<br>" + data.events[index].location + "</td>"
+      elevenPMstring = elevenPMstring + "<td colspan='" + columns/data.elevenPM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
     }
   }
   else elevenPMstring = elevenPMstring + "<td colspan='" + columns + "'></td>";
@@ -467,9 +497,21 @@ function fillConflictsByEnd() {
 
 }
 
+/*function fillConflicts(i) {
+  //if(data.events[i].startTime.substring(0,2))
+  console.log(data.events[i].startTime.substring(0,2));
+}*/
+
 function getTodayEvents() {
   todayEvents = 0;
-  var todayString = today.getFullYear() + (today.getMonth() + 1) + today.getDate();
+  var year = today.getFullYear();
+  var month = today.getMonth() + 1;
+  var date = today.getDate();
+  if(month < 10)
+    month = "0" + month;
+  if(date < 10)
+    date = "0" + date;
+  var todayString = year + "-" + month + "-" +  date;
   var i;
   for(i = 0; i < data.events.length; ++i) {
     if(data.events[i].startDate == todayString) {
@@ -480,5 +522,29 @@ function getTodayEvents() {
 }
 
 function editEvent(e) {
-  console.log("In editEvent()");
+  $('#eventBtn').show();
 }
+
+function resetModal(e) {
+  $('#eventBtn').hide();
+}
+
+/*function deleteEvent(e) {
+  console.log("Deleting event!");
+  console.log($(this.parentElement));
+
+  var parent = $(this.parentElement);
+  //var parent = e.currentTarget.offsetParent;
+  var textString = $(parent).text();
+  var length = textString.length;
+  var eventIndex = textString.substring(length-1);
+  console.log(eventIndex);
+  removeEvent(eventIndex);
+  showEvents(day);
+  //$(e.currentTarget.offsetParent).css('background-color', 'transparent');
+  //$(e.currentTarget.offsetParent).html("");
+}
+
+function removeEvent(i) {
+  data.events[i].status = "Deleted";
+}*/
