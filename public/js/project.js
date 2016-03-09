@@ -96,7 +96,7 @@ function initializePage() {
   	$("#greetingMessage").text(greeting);
 
   	var amtevents = 0;
-  	var amttasks = 0;
+  	var amttasks = 1;
     /*
   	$.getJSON( "../data.json", function() {
   		amttasks = data.tasks.length;
@@ -106,18 +106,18 @@ function initializePage() {
                 })
   	);*/
 
-    $.ajax({
+    /*$.ajax({
             url: '../data.son',
             dataType: 'jsonp',
             success: function(data){
             amttasks = data.tasks.length;
              alert(data);
             }
-          });
+          });*/
 
-  	//$("#todayEvents").text(amtevents);
+  	$("#todayEvents").text(getTodayEvents());
  
-  	//$("#todayTasks").text(amttasks);
+  	$("#todayTasks").text(amttasks);
 
   	$(".navbar-brand").click(function(){
   		ga("send", "event", 'home w/ logo', 'click');
