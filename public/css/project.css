@@ -2,15 +2,12 @@ body {
 	background: url("../img/background.png") center center fixed repeat;
 	padding: 25px;
 	font-family: museo;
-<<<<<<< HEAD
-=======
     src: url("../fonts/museosans-500.otf")  format("opentype");
 }
 
 @font-face {
     font-family: museo;
     src: url("../fonts/museosans-500.otf")  format("opentype");
->>>>>>> 370c6565994b617f1b454c8452e5e9e4b8faddd0
 }
 
 /* HOME PAGE */

@@ -25,11 +25,11 @@
 		<div class="page-header">
 			<div class="row">
 				<div class="col-xs-7 page-title">Tasks</div>
-                <div class="col-xs-5 add-label"><a href="/newtask"><img class="img-responsive img-circle" id="add-btn" src="img/add-icon.png"/></a></div>
+               <div class="col-xs-5 add-label"><a data-toggle="modal" data-target="#newTaskModal" href="#"><img class="img-responsive img-circle" id="add-btn" src="img/add-icon.png"/></a></div>
 			</div>
 		</div>
 	</div>
-
+<!--
     <div class="container" id="tasks-container">
         {{#each tasks}}
         <div class="task-div" id="task{{id}}" style="border-color: {{color}};" >
@@ -52,55 +52,98 @@
             <div class="task-notes" id="notes{{id}}">{{notes}}</div>
         </div>
         {{/each}}
-    </div>
+    </div> -->
+
+<div class="container" id="todayTasks"> </div>
+<div class="container" id="futureTasks"></div>
+<div class="container" id="pastTasks"></div>
+
+<div class="modal fade" id="newTaskModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">New Task</h4>
+                </div>
+
+                <div class="modal-body">
+                    <form role="form" id="new-task-form" style="color:#000000;">
+                        <div class="form-group">
+                            <label for="taskName">Name</label>
+                            <input type="text" class="form-control" id="taskName">
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-6">
+                                <label for="startDate">Due Date</label>
+                                <input type="date" class="form-control" id="startDate">
+                            </div>
+                            <div class="form-group col-xs-6">
+                                <label for="startTime">Time</label>
+                                <input type="time" class="form-control" id="startTime">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-3">
+                                <label for="priority">Priority</label>
+                                <select id="priority" name="Priority">
+                                    <option value="#F21414" style="background:#F21414">Urgent</option>
+                                    <option value="#F76C41" style="background:#F76C41">High</option>
+                                    <option value="#FCC31F" style="background:#FCC31F">Medium</option>
+                                    <option value="#1CA497" style="background:#1CA497">Low</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Notes">Notes</label>
+                            <textarea class="form-control" rows="3" id="taskNotes"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label style="color: #000000;">
+                                    Repeat Task
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-offset-2" id="customOptions">
+                            <div class="radio-inline">
+                                <label>
+                                    <input type="radio" name="repeatOptions" id="repeatDaily" value="daily">Daily
+                                </label>
+                            </div>
+                            <div class="radio-inline">
+                                <label>
+                                    <input type="radio" name="repeatOptions" id="repeatWeekly" value="weekly">Weekly
+                                </label>
+                            </div>
+                            <div class="radio-inline">
+                                <label>
+                                    <input type="radio" name="repeatOptions" id="repeatCustom" value="custom">Custom
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label style="color: #000000;">
+                                    <input type="checkbox" id="taskRemind" >Remind me
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="submitBtnTasks">Save</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
 
     
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
-    <script >
-
-
-        $(document).ready(function(){
-            $('.task-div').click(function(){
-                var taskID = $(this).closest('.task-div').attr('id');
-
-                var idNumber = taskID.substr('task'.length);
-                var notes = '#notes'+idNumber;
-
-                $(notes).slideToggle("fast");
-            });
-
-            if($('.task-div').attr('id') == null) {
-                console.log("ASDASDADAD");
-                $(this).hide();
-            }
-            $(".task-notes").hide();
-
-            $('.removebtn').click(function(){
-                /**var taskID = $(this).closest('.task-div').attr('id');
-
-                var idNumber = taskID.substr('task'.length);
-
-                $.post('/tasks/'+idNumber+'/delete', function() {
-                    window.location.href = '/tasks';
-                });*/
-
-                var taskID = $(this).closest('.task-div').attr('id');
-                $("#"+taskID).hide();
-            });
-
-            $('.editbtn').click(function() {
-                var taskID = $(this).closest('.task-div').attr('id');
-                var idNumber = taskID.substr('task'.length);
-
-                $.post('/edittask/'+idNumber, {id : idNumber} , function(){
-                        window.location.href = '/edittask';
-                });
-            });
-
-        });
-    </script>
-
+    <script src="/js/tasks.js"></script>
     {{> facebook}}
     <script src="/js/facebook.js"></script>
     {{> googleAnalytics}}

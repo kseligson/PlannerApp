@@ -95,29 +95,7 @@ function initializePage() {
   	$("#today").text(month + " " + date + ", " + year);
   	$("#greetingMessage").text(greeting);
 
-  	var amtevents = 0;
-  	var amttasks = 0;
-    /*
-  	$.getJSON( "../data.json", function() {
-  		amttasks = data.tasks.length;
 
-  	}.error(function(xhr) {
-                    alert(xhr)
-                })
-  	);*/
-
-    $.ajax({
-            url: '../data.son',
-            dataType: 'jsonp',
-            success: function(data){
-            amttasks = data.tasks.length;
-             alert(data);
-            }
-          });
-
-  	//$("#todayEvents").text(amtevents);
- 
-  	//$("#todayTasks").text(amttasks);
 
   	$(".navbar-brand").click(function(){
   		ga("send", "event", 'home w/ logo', 'click');
