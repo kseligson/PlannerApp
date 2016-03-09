@@ -95,6 +95,13 @@ function initializePage() {
   	$("#today").text(month + " " + date + ", " + year);
   	$("#greetingMessage").text(greeting);
 
+  	var amtevents = 0;
+  	var amttasks = 1;
+
+  	$("#todayEvents").text(getTodayEvents());
+ 
+  	$("#todayTasks").text(amttasks);
+
   	$(".navbar-brand").click(function(){
   		ga("send", "event", 'home w/ logo', 'click');
   	});
