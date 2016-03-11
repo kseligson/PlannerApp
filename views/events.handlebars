@@ -197,6 +197,102 @@
                                 </label>
                             </div>
                         </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="submitBtnEvents">Save</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- Modal used to create new events -->
+    <div class="modal fade" id="editEventModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Edit Event</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" id="new-event-form">
+                        <div class="form-group">
+                            <label for="eventName">Name</label>
+                            <input type="text" class="form-control" id="eventName">
+                        </div>
+                        <div class="form-group">
+                            <label for="eventLocation">Location</label>
+                            <input type="text" class="form-control" id="eventLocation">
+                        <div class="row">
+                            <div class="form-group col-xs-6">
+                                <label for="startDate">Start Date</label>
+                                <input type="date" class="form-control" id="startDate">
+                            </div>
+                            <div class="form-group col-xs-6">
+                                <label for="startTime">Start Time</label>
+                                <input type="time" class="form-control" id="startTime">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-6">
+                                <label for="endDate">End Date</label>
+                                <input type="date" class="form-control" id="endDate">
+                            </div>
+                            <div class="form-group col-xs-6">
+                                <label for="endTime">End Time</label>
+                                <input type="time" class="form-control" id="endTime">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-3">
+                                <label for="eventColor">Color</label>
+                                <select id="eventColor" name="Color">
+                                    <option value="#2B547E">Blue</option>
+                                    <option value="#3EA055">Green</option> 
+                                    <option value="#E56717">Orange</option>
+                                    <option value="#4E387E">Purple</option>
+                                    <option value="#990012">Red</option>
+                                    <option value="#FFA62F">Yellow</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="eventNotes">Notes</label>
+                            <textarea class="form-control" rows="3" id="eventNotes"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">Repeat Event
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-offset-2" id="customOptions">
+                            <div class="radio-inline">
+                                <label>
+                                    <input type="radio" name="repeatOptions" id="repeatDaily" value="daily">Daily
+                                </label>
+                            </div>
+                            <div class="radio-inline">
+                                <label>
+                                    <input type="radio" name="repeatOptions" id="repeatWeekly" value="weekly">Weekly
+                                </label>
+                            </div>
+                            <div class="radio-inline">
+                                <label>
+                                    <input type="radio" name="repeatOptions" id="repeatCustom" value="custom">Custom
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">Remind me
+                                </label>
+                            </div>
+                        </div>
                         <button type="button" class="btn btn-danger" data-dismiss="modal" id="eventBtn">Delete</button>
                     </form>
                 </div>

@@ -279,6 +279,39 @@ a:hover {
     border-radius: 50%;
 }
 
+/* EVENTS */
+/* TASKS*/
+.event-div {
+	margin: 10px;
+	background-color: #F5F5F5;
+	border-left: 6px solid;
+	border-radius: 5px; 
+}
+
+.event-name {
+	margin-left: 10px;
+	font-size: 150%;
+	font-weight: bold;
+	width: 50%;
+	display: inline-block;
+}
+
+.event-due {
+	color: #656565;
+	margin-left: 10px;
+}
+
+.event-task {
+	margin-left: 10px;
+	margin-bottom: 5px;
+}
+
+.event-notes {
+	color: #656565;
+	margin-left: 10px;
+	margin-bottom: 5px;
+}
+
 /* TEMP EVENTS */
 .event-div {
 	margin: 10px;
@@ -367,6 +400,10 @@ a:hover {
 #event-table tr{
 	border: 1px solid white;
 	margin-top: 20px;
+}
+
+#event-table {
+	border: 1px solid white !important;
 }
 <<<<<<< HEAD
 

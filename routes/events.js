@@ -17,7 +17,7 @@ exports.view = function(req, res) {
 };
 
 exports.addEvent = function(req, res) {
-  var form = req.body;
+  /*var form = req.body;
 
   var newEvent = {
     "name": form.name,
@@ -30,7 +30,7 @@ exports.addEvent = function(req, res) {
   };
 
   console.log(newEvent);
-  res.redirect('/events');
+  res.redirect('/events');*/
 
 /*	var form_data = req.body;
 
