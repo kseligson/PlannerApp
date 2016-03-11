@@ -12,7 +12,8 @@ var data = {
       startDate: "2016-03-11",
       eventColor: "#990012",
       location: "H&SS 1330",
-      status: "Saved"
+      status: "Saved",
+      id: "1"
     },
     {
       name: "COGS 174 Lecture",
@@ -20,7 +21,8 @@ var data = {
       startDate: "2016-03-11",
       location: "CSB 001",
       eventColor: "#2B547E",
-      status: "Saved"
+      status: "Saved",
+      id: "2"
     },
     {
       name: "COGS 102B Lecture",
@@ -28,7 +30,8 @@ var data = {
       startDate: "2016-03-11",
       eventColor: "#4E387E",
       location: "WLH 2005",
-      status: "Saved"
+      status: "Saved",
+      id: "3",
     },
     {
       name: "COGS 101B Lecture",
@@ -36,7 +39,8 @@ var data = {
       startDate: "2016-03-11",
       eventColor: "#3EA055",
       location: "WLH 2001",
-      status: "Saved"
+      status: "Saved",
+      id: "4"
     },
     {
       name: "COGS 120 Lab",
@@ -44,7 +48,8 @@ var data = {
       startDate: "2016-03-10",
       eventColor: "#990012",
       location: "CICC 101",
-      status: "Saved"
+      status: "Saved",
+      id: "5"
     },
     {
       name: "COGS 120 Group Meeting",
@@ -52,7 +57,8 @@ var data = {
       startDate: "2016-03-10",
       eventColor: "#990012",
       location: "PC Study Room 3",
-      status: "Saved"
+      status: "Saved",
+      id: "6"
     },
     {
       name: "FOOSH Exec Meeting",
@@ -60,7 +66,8 @@ var data = {
       startDate: "03-10-2016",
       eventColor: "#FFA62F",
       location: "Ann's Office",
-      status: "Saved"
+      status: "Saved",
+      id: "7"
     }
   ],
   sevenAM: [],
@@ -93,14 +100,49 @@ $(document).ready(function() {
 function initializePage() {
   updateDate(day);
 
-  //$('#deleteOpt').click(deleteEvent);
   $('#left-nav').click(decreaseDay);
   $('#right-nav').click(increaseDay);
   $('#todayBtn').click(setToday);
   $('#submitBtnEvents').click(addEvent);
   $('#add-btn').click(resetModal);
+  $('.removebtn').click(deleteEvent);
+  $('.editbtn').click(editEvent);
 }
 
+function deleteEvent() {
+  console.log("Deleting event");
+  var eventID = $(this).closest('.event-col').attr('id');
+  console.log(eventID.substring('event'.length));
+  //data.events[eventID.substring('event'.length)-1].status = "Hidden";
+  //showEvents(day);
+  $('#' + eventID).hide();
+}
+
+function editEvent() {
+  var eventID = $(this).closest('.event-col').attr('id');
+  eventID = eventID.substring('event'.length);
+  console.log(eventID);
+  var jsonObj = null;
+
+  for(var i = 0; i < data.events.length; ++i) {
+    if(data.events[i].id == eventID) {
+      jsonObj = data.events[i];
+    }
+  }
+
+  //Setting default values in form
+  $('#eventName').val(jsonObj.name);
+  $('#startTime').val(jsonObj.startTime);
+  $('#startDate').val(jsonObj.startDate);
+  $('#endTime').val(jsonObj.endTime);
+  $('#endDate').val(jsonObj.endDate);
+  $('#eventColor option[value=' + jsonObj.eventColor + ']').attr('selected', 'selected');
+  $('#eventNotes').val(jsonObj.notes);
+
+  showEvents(today);
+}
+
+/* Used to navigate between days */
 function decreaseDay(e) {
   day.setDate(day.getDate() - 1);
   updateDate(day);
@@ -139,6 +181,7 @@ function addEvent(e) {
   var color = $('#eventColor').val();
   var notes = $('#eventNotes').val();
   var location = $('#eventLocation').val();
+  var id = data.events.length;
   data.events.push({
     name: eventName,
     startDate: startDate,
@@ -147,7 +190,8 @@ function addEvent(e) {
     endTime: endTime,
     eventColor: color,
     eventNotes: notes,
-    location: location
+    location: location,
+    id: id
   });
   showEvents(today);
 }
@@ -161,7 +205,7 @@ function showEvents(date) {
   for(var i = 0; i < data.events.length; ++i) {
     //Find events that start on the currently selected day
     if((data.events[i].startDate.substring(0,4) == date.getFullYear()) && (data.events[i].startDate.substring(5,7) == (date.getMonth() + 1)) && (data.events[i].startDate.substring(8,10) == date.getDate())) {
-      if(data.events[i].status != "Deleted") {
+      if(data.events[i].status != "Hidden") {
         fillConflictsByStart(i);
       }
     }
@@ -198,7 +242,7 @@ function showEvents(date) {
   if(data.sevenAM.length != 0) {
     for(var k = 0; k < data.sevenAM.length; ++k) {
       var index = data.sevenAM[k].id;
-      sevenAMstring = sevenAMstring + "<td colspan='" + columns/data.sevenAM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
+      sevenAMstring = sevenAMstring + "<td colspan='" + columns/data.fourPM.length + "' class='event-col' id='event" + data.events[index].id + "' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<button type='button' class='btn btn-round removebtn' style='background-color: transparent; color: white; float: right' id='remove" + data.events[index].id + "'><span class='glyphicon glyphicon-remove'></span></button>" +"<button type='button' data-toggle='modal' data-target='#newEventModal' class='btn btn-round editbtn' style='background-color: transparent; color: white; float: right' id='edit" + data.events[index].id + "'><span class='glyphicon glyphicon-pencil'></span></button><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>";
     }
   }
   else sevenAMstring = sevenAMstring + "<td colspan='" + columns + "'></td>";
@@ -207,7 +251,7 @@ function showEvents(date) {
   if(data.eightAM.length != 0) {
     for(var k = 0; k < data.eightAM.length; ++k) {
       var index = data.eightAM[k].id;
-      eightAMstring = eightAMstring + "<td colspan='" + columns/data.eightAM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
+      eightAMstring = eightAMstring + "<td colspan='" + columns/data.fourPM.length + "' class='event-col' id='event" + data.events[index].id + "' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<button type='button' class='btn btn-round removebtn' style='background-color: transparent; color: white; float: right' id='remove" + data.events[index].id + "'><span class='glyphicon glyphicon-remove'></span></button>" +"<button type='button' data-toggle='modal' data-target='#newEventModal' class='btn btn-round editbtn' style='background-color: transparent; color: white; float: right' id='edit" + data.events[index].id + "'><span class='glyphicon glyphicon-pencil'></span></button><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>";
     }
   }
   else eightAMstring = eightAMstring + "<td colspan='" + columns + "'></td>";
@@ -216,7 +260,7 @@ function showEvents(date) {
   if(data.nineAM.length != 0) {
     for(var k = 0; k < data.nineAM.length; ++k) {
       var index = data.nineAM[k].id;
-      nineAMstring = nineAMstring + "<td colspan='" + columns/data.nineAM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
+      nineAMstring = nineAMstring + "<td colspan='" + columns/data.fourPM.length + "' class='event-col' id='event" + data.events[index].id + "' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<button type='button' class='btn btn-round removebtn' style='background-color: transparent; color: white; float: right' id='remove" + data.events[index].id + "'><span class='glyphicon glyphicon-remove'></span></button>" +"<button type='button' data-toggle='modal' data-target='#newEventModal' class='btn btn-round editbtn' style='background-color: transparent; color: white; float: right' id='edit" + data.events[index].id + "'><span class='glyphicon glyphicon-pencil'></span></button><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>";
     }
   }
   else nineAMstring = nineAMstring + "<td colspan='" + columns + "'></td>";
@@ -225,7 +269,7 @@ function showEvents(date) {
   if(data.tenAM.length != 0) {
     for(var k = 0; k < data.tenAM.length; ++k) {
       var index = data.tenAM[k].id;
-      tenAMstring = tenAMstring + "<td colspan='" + columns/data.tenAM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
+      tenAMstring = tenAMstring + "<td colspan='" + columns/data.fourPM.length + "' class='event-col' id='event" + data.events[index].id + "' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<button type='button' class='btn btn-round removebtn' style='background-color: transparent; color: white; float: right' id='remove" + data.events[index].id + "'><span class='glyphicon glyphicon-remove'></span></button>" +"<button type='button' data-toggle='modal' data-target='#newEventModal' class='btn btn-round editbtn' style='background-color: transparent; color: white; float: right' id='edit" + data.events[index].id + "'><span class='glyphicon glyphicon-pencil'></span></button><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>";
     }
   }
   else tenAMstring = tenAMstring + "<td colspan='" + columns + "'></td>";
@@ -234,7 +278,7 @@ function showEvents(date) {
   if(data.elevenAM.length != 0) {
     for(var k = 0; k < data.elevenAM.length; ++k) {
       var index = data.elevenAM[k].id;
-      elevenAMstring = elevenAMstring + "<td colspan='" + columns/data.elevenAM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
+      elevenAMstring = elevenAMstring + "<td colspan='" + columns/data.fourPM.length + "' class='event-col' id='event" + data.events[index].id + "' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<button type='button' class='btn btn-round removebtn' style='background-color: transparent; color: white; float: right' id='remove" + data.events[index].id + "'><span class='glyphicon glyphicon-remove'></span></button>" +"<button type='button' data-toggle='modal' data-target='#newEventModal' class='btn btn-round editbtn' style='background-color: transparent; color: white; float: right' id='edit" + data.events[index].id + "'><span class='glyphicon glyphicon-pencil'></span></button><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>";
     }
   }
   else elevenAMstring = elevenAMstring + "<td colspan='" + columns + "'></td>";
@@ -243,7 +287,7 @@ function showEvents(date) {
   if(data.twelvePM.length != 0) {
     for(var k = 0; k < data.twelvePM.length; ++k) {
       var index = data.twelvePM[k].id;
-      twelvePMstring = twelvePMstring + "<td colspan='" + columns/data.twelvePM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
+      twelvePMstring = twelvePMstring + "<td colspan='" + columns/data.fourPM.length + "' class='event-col' id='event" + data.events[index].id + "' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<button type='button' class='btn btn-round removebtn' style='background-color: transparent; color: white; float: right' id='remove" + data.events[index].id + "'><span class='glyphicon glyphicon-remove'></span></button>" +"<button type='button' data-toggle='modal' data-target='#newEventModal' class='btn btn-round editbtn' style='background-color: transparent; color: white; float: right' id='edit" + data.events[index].id + "'><span class='glyphicon glyphicon-pencil'></span></button><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>";
     }
   }
   else twelvePMstring = twelvePMstring + "<td colspan='" + columns + "'></td>";
@@ -252,7 +296,7 @@ function showEvents(date) {
   if(data.onePM.length != 0) {
     for(var k = 0; k < data.onePM.length; ++k) {
       var index = data.onePM[k].id;
-      onePMstring = onePMstring + "<td colspan='" + columns/data.onePM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
+      onePMstring = onePMstring + "<td colspan='" + columns/data.fourPM.length + "' class='event-col' id='event" + data.events[index].id + "' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<button type='button' class='btn btn-round removebtn' style='background-color: transparent; color: white; float: right' id='remove" + data.events[index].id + "'><span class='glyphicon glyphicon-remove'></span></button>" +"<button type='button' data-toggle='modal' data-target='#newEventModal' class='btn btn-round editbtn' style='background-color: transparent; color: white; float: right' id='edit" + data.events[index].id + "'><span class='glyphicon glyphicon-pencil'></span></button><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>";
     }
   }
   else onePMstring = onePMstring + "<td colspan='" + columns + "'></td>";
@@ -261,7 +305,7 @@ function showEvents(date) {
   if(data.twoPM.length != 0) {
     for(var k = 0; k < data.twoPM.length; ++k) {
       var index = data.twoPM[k].id;
-      twoPMstring = twoPMstring + "<td colspan='" + columns/data.twoPM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
+      twoPMstring = twoPMstring + "<td colspan='" + columns/data.fourPM.length + "' class='event-col' id='event" + data.events[index].id + "' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<button type='button' class='btn btn-round removebtn' style='background-color: transparent; color: white; float: right' id='remove" + data.events[index].id + "'><span class='glyphicon glyphicon-remove'></span></button>" +"<button type='button' data-toggle='modal' data-target='#newEventModal' class='btn btn-round editbtn' style='background-color: transparent; color: white; float: right' id='edit" + data.events[index].id + "'><span class='glyphicon glyphicon-pencil'></span></button><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>";
     }
   }
   else twoPMstring = twoPMstring + "<td colspan='" + columns + "'></td>";
@@ -270,7 +314,7 @@ function showEvents(date) {
   if(data.threePM.length != 0) {
     for(var k = 0; k < data.threePM.length; ++k) {
       var index = data.threePM[k].id;
-      threePMstring = threePMstring + "<td colspan='" + columns/data.threePM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
+      threePMstring = threePMstring + "<td colspan='" + columns/data.fourPM.length + "' class='event-col' id='event" + data.events[index].id + "' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<button type='button' class='btn btn-round removebtn' style='background-color: transparent; color: white; float: right' id='remove" + data.events[index].id + "'><span class='glyphicon glyphicon-remove'></span></button>" +"<button type='button' data-toggle='modal' data-target='#newEventModal' class='btn btn-round editbtn' style='background-color: transparent; color: white; float: right' id='edit" + data.events[index].id + "'><span class='glyphicon glyphicon-pencil'></span></button><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>";
     }
   }
   else threePMstring = threePMstring + "<td colspan='" + columns + "'></td>";
@@ -279,7 +323,7 @@ function showEvents(date) {
   if(data.fourPM.length != 0) {
     for(var k = 0; k < data.fourPM.length; ++k) {
       var index = data.fourPM[k].id;
-      fourPMstring = fourPMstring + "<td colspan='" + columns/data.fourPM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
+      fourPMstring = fourPMstring + "<td colspan='" + columns/data.fourPM.length + "' class='event-col' id='event" + data.events[index].id + "' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<button type='button' class='btn btn-round removebtn' style='background-color: transparent; color: white; float: right' id='remove" + data.events[index].id + "'><span class='glyphicon glyphicon-remove'></span></button>" +"<button type='button' data-toggle='modal' data-target='#newEventModal' class='btn btn-round editbtn' style='background-color: transparent; color: white; float: right' id='edit" + data.events[index].id + "'><span class='glyphicon glyphicon-pencil'></span></button><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>";
     }
   }
   else fourPMstring = fourPMstring + "<td colspan='" + columns + "'></td>";
@@ -288,7 +332,7 @@ function showEvents(date) {
   if(data.fivePM.length != 0) {
     for(var k = 0; k < data.fivePM.length; ++k) {
       var index = data.fivePM[k].id;
-      fivePMstring = fivePMstring + "<td colspan='" + columns/data.fivePM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
+      fivePMstring = fivePMstring + "<td colspan='" + columns/data.fourPM.length + "' class='event-col' id='event" + data.events[index].id + "' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<button type='button' class='btn btn-round removebtn' style='background-color: transparent; color: white; float: right' id='remove" + data.events[index].id + "'><span class='glyphicon glyphicon-remove'></span></button>" +"<button type='button' data-toggle='modal' data-target='#newEventModal' class='btn btn-round editbtn' style='background-color: transparent; color: white; float: right' id='edit" + data.events[index].id + "'><span class='glyphicon glyphicon-pencil'></span></button><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>";
     }
   }
   else fivePMstring = fivePMstring + "<td colspan='" + columns + "'></td>";
@@ -297,7 +341,7 @@ function showEvents(date) {
   if(data.sixPM.length != 0) {
     for(var k = 0; k < data.sixPM.length; ++k) {
       var index = data.sixPM[k].id;
-      sixPMstring = sixPMstring + "<td colspan='" + columns/data.sixPM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
+      sixPMstring = sixPMstring + "<td colspan='" + columns/data.fourPM.length + "' class='event-col' id='event" + data.events[index].id + "' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<button type='button' class='btn btn-round removebtn' style='background-color: transparent; color: white; float: right' id='remove" + data.events[index].id + "'><span class='glyphicon glyphicon-remove'></span></button>" +"<button type='button' data-toggle='modal' data-target='#newEventModal' class='btn btn-round editbtn' style='background-color: transparent; color: white; float: right' id='edit" + data.events[index].id + "'><span class='glyphicon glyphicon-pencil'></span></button><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>";
     }
   }
   else sixPMstring = sixPMstring + "<td colspan='" + columns + "'></td>";
@@ -306,7 +350,7 @@ function showEvents(date) {
   if(data.sevenPM.length != 0) {
     for(var k = 0; k < data.sevenPM.length; ++k) {
       var index = data.sevenPM[k].id;
-      sevenPMstring = sevenPMstring + "<td colspan='" + columns/data.sevenPMstring.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
+      sevenPMstring = sevenPMstring + "<td colspan='" + columns/data.fourPM.length + "' class='event-col' id='event" + data.events[index].id + "' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<button type='button' class='btn btn-round removebtn' style='background-color: transparent; color: white; float: right' id='remove" + data.events[index].id + "'><span class='glyphicon glyphicon-remove'></span></button>" +"<button type='button' data-toggle='modal' data-target='#newEventModal' class='btn btn-round editbtn' style='background-color: transparent; color: white; float: right' id='edit" + data.events[index].id + "'><span class='glyphicon glyphicon-pencil'></span></button><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>";
     }
   }
   else sevenPMstring = sevenPMstring + "<td colspan='" + columns + "'></td>";
@@ -315,7 +359,7 @@ function showEvents(date) {
   if(data.eightPM.length != 0) {
     for(var k = 0; k < data.eightPM.length; ++k) {
       var index = data.eightPM[k].id;
-      eightPMstring = eightPMstring + "<td colspan='" + columns/data.eightPM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
+      eightPMstring = eightPMstring + "<td colspan='" + columns/data.fourPM.length + "' class='event-col' id='event" + data.events[index].id + "' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<button type='button' class='btn btn-round removebtn' style='background-color: transparent; color: white; float: right' id='remove" + data.events[index].id + "'><span class='glyphicon glyphicon-remove'></span></button>" +"<button type='button' data-toggle='modal' data-target='#newEventModal' class='btn btn-round editbtn' style='background-color: transparent; color: white; float: right' id='edit" + data.events[index].id + "'><span class='glyphicon glyphicon-pencil'></span></button><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>";
     }
   }
   else eightPMstring = eightPMstring + "<td colspan='" + columns + "'></td>";
@@ -324,7 +368,7 @@ function showEvents(date) {
   if(data.ninePM.length != 0) {
     for(var k = 0; k < data.ninePM.length; ++k) {
       var index = data.ninePM[k].id;
-      ninePMstring = ninePMstring + "<td colspan='" + columns/data.ninePM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
+      ninePMstring = ninePMstring + "<td colspan='" + columns/data.fourPM.length + "' class='event-col' id='event" + data.events[index].id + "' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<button type='button' class='btn btn-round removebtn' style='background-color: transparent; color: white; float: right' id='remove" + data.events[index].id + "'><span class='glyphicon glyphicon-remove'></span></button>" +"<button type='button' data-toggle='modal' data-target='#newEventModal' class='btn btn-round editbtn' style='background-color: transparent; color: white; float: right' id='edit" + data.events[index].id + "'><span class='glyphicon glyphicon-pencil'></span></button><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>";
     }
   }
   else ninePMstring = ninePMstring + "<td colspan='" + columns + "'></td>";
@@ -333,7 +377,7 @@ function showEvents(date) {
   if(data.tenPM.length != 0) {
     for(var k = 0; k < data.tenPM.length; ++k) {
       var index = data.tenPM[k].id;
-      tenPMstring = tenPMstring + "<td colspan='" + columns/data.tenPM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
+      tenPMstring = tenPMstring + "<td colspan='" + columns/data.fourPM.length + "' class='event-col' id='event" + data.events[index].id + "' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<button type='button' class='btn btn-round removebtn' style='background-color: transparent; color: white; float: right' id='remove" + data.events[index].id + "'><span class='glyphicon glyphicon-remove'></span></button>" +"<button type='button' data-toggle='modal' data-target='#newEventModal' class='btn btn-round editbtn' style='background-color: transparent; color: white; float: right' id='edit" + data.events[index].id + "'><span class='glyphicon glyphicon-pencil'></span></button><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>";
     }
   }
   else tenPMstring = tenPMstring + "<td colspan='" + columns + "'></td>";
@@ -342,7 +386,7 @@ function showEvents(date) {
   if(data.elevenPM.length != 0) {
     for(var k = 0; k < data.elevenPM.length; ++k) {
       var index = data.elevenPM[k].id;
-      elevenPMstring = elevenPMstring + "<td colspan='" + columns/data.elevenPM.length + "' id='event-col' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<span id='deleteOpt' style='float:right; padding-right: 10px'>x</span><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>"
+      elevenPMstring = elevenPMstring + "<td colspan='" + columns/data.fourPM.length + "' class='event-col' id='event" + data.events[index].id + "' style='background-color:" + data.events[index].eventColor + "; color: white'>" + data.events[index].name + "<button type='button' class='btn btn-round removebtn' style='background-color: transparent; color: white; float: right' id='remove" + data.events[index].id + "'><span class='glyphicon glyphicon-remove'></span></button>" +"<button type='button' data-toggle='modal' data-target='#newEventModal' class='btn btn-round editbtn' style='background-color: transparent; color: white; float: right' id='edit" + data.events[index].id + "'><span class='glyphicon glyphicon-pencil'></span></button><br>" + data.events[index].location + "<span id='index' hidden>" + index + "</span></td>";
     }
   }
   else elevenPMstring = elevenPMstring + "<td colspan='" + columns + "'></td>";
@@ -521,12 +565,20 @@ function getTodayEvents() {
   return todayEvents;
 }
 
-function editEvent(e) {
-  $('#eventBtn').show();
-}
-
 function resetModal(e) {
   $('#eventBtn').hide();
+  $('#eventName').val("");
+  $('#eventLocation').val("");
+  $('#eventNotes').val("");
+  $('#eventColor').val("#2B547E");
+  var month = today.getMonth();
+  var date = today.getDate();
+  if(month < 10)
+    month = "0" + month;
+  if(date < 10)
+    date = "0" + date;
+  $('#startDate').val(month + date + today.getFullYear());
+  $('#startTime').val(today.getHours());
 }
 
 /*function deleteEvent(e) {
