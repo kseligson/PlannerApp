@@ -7,6 +7,7 @@ $(document).ready(function() {
 
 var day = new Date();
 var today = new Date();
+var editID = null;
 
 var data = {
     tasks: [
@@ -24,10 +25,10 @@ var data = {
             "id": "tester2",
             "name": "Cleaning",
             "date": "03/07/16",
-            "time": "11:30",
-            "notes": "Project is Due",
-            "color": "#FCC31F",
-            "repeat": "1",
+            "time": "13:30",
+            "notes": "Clean the house",
+            "color": "#F76C41",
+            "repeat": "3",
             "remind": "true"
         }
     ]
@@ -40,8 +41,51 @@ function initializePage() {
      $('.editbtn').click(editTask);     
      $(".task-notes").hide();
      $('#submitBtnTasks').click(addTask);
+     $('#editBtnTasks').click(taskChange);
 
      showTasks(today);
+}
+
+function taskChange() {
+
+     var rbool = false;
+        var repeat = 0;
+        var name = $('#edit-task-form #taskName').val();
+        var date = $('#edit-task-form #startDate').val();
+        var time = $('#edit-task-form #startTime').val();
+        var color = $('#edit-task-form #editpriority').val();
+        var notes = $('#edit-task-form #taskNotes').val();
+
+        if ($('#edit-task-form #taskRemind').is(":checked")) {
+              // it is checked
+              rbool=true;
+        }
+
+        if($('#edit-task-form #repeatDaily').is(":checked")) {
+            repeat = 1;
+        }
+        else if($('#edit-task-form #repeatWeekly').is(":checked")) {
+            repeat = 2;
+        }
+        else if($('#edit-task-form #repeatCustom').is(":checked")) {
+            repeat = 3;
+        }
+        var id = editID;
+
+    for(var i = 0; i < data.tasks.length; ++i) {
+
+        if(data.tasks[i].id == id) {
+            data.tasks[i].name = name;
+            data.tasks[i].date = date;
+            data.tasks[i].time = time;
+            data.tasks[i].notes = notes;
+            data.tasks[i].color = color;
+            data.tasks[i].repeat = repeat;
+            data.tasks[i].remind = rbool;
+        }
+    }
+
+    showTasks(today);
 }
 
 function toggleNotes() {
@@ -55,6 +99,7 @@ function toggleNotes() {
 
 
 function removeTask() {
+    console.log("remove this");
     var taskID = $(this).closest('.task-div').attr('id');
     $("#"+taskID).hide();
 }
@@ -63,10 +108,67 @@ function removeTask() {
 function editTask() {
     var taskID = $(this).closest('.task-div').attr('id');
     var idNumber = taskID.substr('task'.length);
-/*
-    $.post('/edittask/'+idNumber, {id : idNumber} , function(){
-            window.location.href = '/edittask';
-    });*/
+
+    editID = idNumber;
+    var jsonObj = null;
+
+    for(var i = 0; i < data.tasks.length; ++i) {
+        if(data.tasks[i].id == idNumber) {
+            jsonObj = data.tasks[i];
+        }
+    }
+
+    $("#edit-task-form #taskName").val(jsonObj.name);
+    $("#edit-task-form #startTime").val(jsonObj.time);
+    $("#edit-task-form #taskNotes").val(jsonObj.notes);
+
+    var date_obj = new Date(jsonObj.date);
+
+    var year = date_obj.getFullYear();
+    var month = date_obj.getMonth()+1;
+    var day = date_obj.getDate();
+    var monthstr = month;
+    var daystr = day;
+    if(month < 10) {
+    monthstr = "0"+month;
+    }
+
+    if(day < 10) {
+    daystr = "0"+day;
+    }
+
+    var fulldate = year + "-" + monthstr + "-" + daystr;
+    $("#edit-task-form #startDate").val(fulldate);
+    
+    if(jsonObj.color == '#F21414'){
+           $('#editpriority option[value=#F21414]').attr('selected', 'selected');
+      }
+      else if(jsonObj.color == '#F76C41'){
+           $('#editpriority option[value=#F76C41]').attr('selected', 'selected');
+      }
+      else if(jsonObj.color == '#FCC31F'){
+           $('#editpriority option[value=#FCC31F]').attr('selected', 'selected');
+      }
+      else if(jsonObj.color == '#1CA497'){
+           $('#editpriority option[value=#1CA497]').attr('selected', 'selected');
+      }
+
+
+    if(jsonObj.repeat == 1) {
+        $("#editcustomOptions #repeatDaily").prop("checked", true);
+    }
+    else if (jsonObj.repeat == 2) {
+        $("#editcustomOptions #repeatWeekly").prop("checked", true);
+    }
+    else if (jsonObj.repeat == 3) {
+        $("#editcustomOptions #repeatCustom").prop("checked", true);
+    }
+
+    if(jsonObj.remind) {
+        $("#edit-task-form #taskRemind").prop("checked", true);
+    }
+
+    showTasks(today);
 }
 
 function addTask(e) {
@@ -194,7 +296,7 @@ function showTasks(date) {
                     '</button>'+
                 '</div>'+
                 '<div class="editbtn">'+
-                    '<button type="button" class="btn btn-round" style="background-color:transparent; color:'+data.tasks[i].color+';" id="edit'+data.tasks[i].id+'">'+
+                    '<button type="button" data-toggle="modal" data-target="#editTaskModal" class="btn btn-round" style="background-color:transparent; color:'+data.tasks[i].color+';" id="edit'+data.tasks[i].id+'">'+
                         '<span class="glyphicon glyphicon-pencil"></span>'+
                     '</button>'+
                 '</div>'+
@@ -218,7 +320,7 @@ function showTasks(date) {
                     '</button>'+
                 '</div>'+
                 '<div class="editbtn">'+
-                    '<button type="button" class="btn btn-round" style="background-color:transparent; color:'+data.tasks[i].color+';" id="edit'+data.tasks[i].id+'">'+
+                    '<button type="button" data-toggle="modal" data-target="#editTaskModal" class="btn btn-round" style="background-color:transparent; color:'+data.tasks[i].color+';" id="edit'+data.tasks[i].id+'">'+
                         '<span class="glyphicon glyphicon-pencil"></span>'+
                     '</button>'+
                 '</div>'+
@@ -243,7 +345,7 @@ function showTasks(date) {
                     '</button>'+
                 '</div>'+
                 '<div class="editbtn">'+
-                    '<button type="button" class="btn btn-round" style="background-color:transparent; color:'+data.tasks[i].color+';" id="edit'+data.tasks[i].id+'">'+
+                    '<button type="button" data-toggle="modal" data-target="#editTaskModal" class="btn btn-round" style="background-color:transparent; color:'+data.tasks[i].color+';" id="edit'+data.tasks[i].id+'">'+
                         '<span class="glyphicon glyphicon-pencil"></span>'+
                     '</button>'+
                 '</div>'+
@@ -256,4 +358,9 @@ function showTasks(date) {
         }
         
    }
+
+     $('.task-div').click(toggleNotes);
+     $('.removebtn').click(removeTask);
+     $('.editbtn').click(editTask);      
+     $(".task-notes").hide();
 }

@@ -140,6 +140,88 @@
     </div><!-- /.modal -->
 
 
+
+<div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Edit Task</h4>
+                </div>
+
+                <div class="modal-body">
+                    <form role="form" id="edit-task-form" style="color:#000000;" >
+                        <div class="form-group">
+                            <label for="taskName">Name</label>
+                            <input type="text" class="form-control" id="taskName">
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-6">
+                                <label for="startDate">Due Date</label>
+                                <input type="date" class="form-control" id="startDate">
+                            </div>
+                            <div class="form-group col-xs-6">
+                                <label for="startTime">Time</label>
+                                <input type="time" class="form-control" id="startTime">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-3">
+                                <label for="priority">Priority</label>
+                                <select id="editpriority" name="Priority">
+                                    <option value="#F21414" style="background:#F21414">Urgent</option>
+                                    <option value="#F76C41" style="background:#F76C41">High</option>
+                                    <option value="#FCC31F" style="background:#FCC31F">Medium</option>
+                                    <option value="#1CA497" style="background:#1CA497">Low</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Notes">Notes</label>
+                            <textarea class="form-control" rows="3" id="taskNotes"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label style="color: #000000;">
+                                    Repeat Task
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-offset-2" id="editcustomOptions">
+                            <div class="radio-inline">
+                                <label>
+                                    <input type="radio" name="repeatOptions" id="repeatDaily" value="daily">Daily
+                                </label>
+                            </div>
+                            <div class="radio-inline">
+                                <label>
+                                    <input type="radio" name="repeatOptions" id="repeatWeekly" value="weekly">Weekly
+                                </label>
+                            </div>
+                            <div class="radio-inline">
+                                <label>
+                                    <input type="radio" name="repeatOptions" id="repeatCustom" value="custom">Custom
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label style="color: #000000;">
+                                    <input type="checkbox" id="taskRemind" >Remind me
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="editBtnTasks">Save</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
     
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
