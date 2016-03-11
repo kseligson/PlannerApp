@@ -30,6 +30,16 @@ var data = {
             "color": "#F76C41",
             "repeat": "3",
             "remind": "true"
+        },
+         {
+            "id": "tester3",
+            "name": "Project",
+            "date": "03/11/16",
+            "time": "06:30",
+            "notes": "APP IS DUE",
+            "color": "#F76C41",
+            "repeat": "0",
+            "remind": "true"
         }
     ]
 };
@@ -278,15 +288,18 @@ function showTasks(date) {
     for(var i = 0; i < data.tasks.length; ++i) {
         
         var date_obj = new Date(data.tasks[i].date);
-        console.log(date_obj);
-        console.log(date_obj.getDate());
-        console.log(today.getDate());
-        console.log(date_obj.getDate() ==today.getDate());
-        console.log(date_obj.getMonth() ==today.getMonth());
-        console.log(date_obj.getYear() ==today.getYear());
+        var istoday = false;
+        if(data.tasks[i].id == "tester3"){
+            if(date_obj.getDate() ==today.getDate() && date_obj.getMonth() ==today.getMonth() && date_obj.getYear() ==today.getYear()) {
+            istoday = true;
+        }    
+        }
+        if(date_obj.getDate()+1 ==today.getDate() && date_obj.getMonth() ==today.getMonth() && date_obj.getYear() ==today.getYear()) {
+            istoday = true;
+        }
 
 
-        if(date_obj.getDate() ==today.getDate() && date_obj.getMonth() ==today.getMonth() && date_obj.getYear() ==today.getYear()) {
+        if(istoday) {
             var newtaskhtml = 
             '<div class="task-div" id="task'+ data.tasks[i].id +'" style="border-color: '+ data.tasks[i].color + ';" >'+
             '<div class="main-task" style="color:'+data.tasks[i].color +';"> <div class="task-name" style="width: 50%; display: inline-block;">'+data.tasks[i].name+'</div>'+
